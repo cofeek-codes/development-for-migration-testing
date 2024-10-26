@@ -4,19 +4,44 @@
 
 @layer base {
 	@font-face {
-      font-family: "Euclid Circular B Regular";
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(./fonts/EuclidCircularB-Regular.otf) format('opentype');
+		font-family: 'Euclid Circular B Regular';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url(./fonts/EuclidCircularB-Regular.otf) format('opentype');
 	}
 
 	@font-face {
-      font-family: "Euclid Circular B Bold";
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(./fonts/EuclidCircularB-Bold.otf) format('opentype');
+		font-family: 'Euclid Circular B Bold';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url(./fonts/EuclidCircularB-Bold.otf) format('opentype');
 	}
+}
 
+.c-select {
+	&::after {
+		content: url('../assets/dropdown.png');
+		right: 0px;
+		bottom: 0px;
+		max-width: 34px;
+		max-height: 34px;
+	}
+}
+
+.c-password {
+	position: relative;
+}
+
+.c-password::after {
+	content: url('../assets/dropdown.png');
+	content: 'a';
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	top: 0;
+	right: 5px;
+	background: red;
+	color: white;
 }
