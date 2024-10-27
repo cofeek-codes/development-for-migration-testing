@@ -31,17 +31,35 @@
 }
 
 .c-password {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: relative;
 }
 
-.c-password::after {
-	content: url('../assets/dropdown.png');
-	content: 'a';
-	position: absolute;
-	width: 5px;
-	height: 5px;
-	top: 0;
-	right: 5px;
-	background: red;
-	color: white;
+.c-password-eye {
+	&::after {
+		width: 44px;
+		height: 44px;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+	}
+}
+.c-password {
+	input:focus,
+	input:focus-visible {
+		outline: none;
+	}
+
+	&:focus-within {
+		outline: -webkit-focus-ring-color auto 1px;
+	}
+}
+.c-password-eye {
+	content: url('../assets/password-hidden.png');
+}
+
+.c-password-eye_shown {
+	content: url('../assets/password-shown.png');
 }

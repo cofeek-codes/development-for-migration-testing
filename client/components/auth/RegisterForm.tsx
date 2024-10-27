@@ -1,5 +1,6 @@
 'use client'
 import '@/app/globals.scss'
+import { useState } from 'react'
 
 type Props = {
 	// @TODO: replace with correct type definition of function
@@ -7,6 +8,13 @@ type Props = {
 }
 
 const RegisterForm = (props: Props) => {
+	const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
+
+	function showPassword() {
+		console.log('eye pressed')
+		setIsPasswordShown(!isPasswordShown)
+	}
+
 	return (
 		<>
 			<div className='font-regular text-[80px] w-full flex justify-center items-center'>
@@ -26,10 +34,19 @@ const RegisterForm = (props: Props) => {
 						<label className='text-3xl ml-2.5' htmlFor='password__input'>
 							Пароль
 						</label>
-						<input
-							type='password'
-							className='c-password h-[90px] w-full text-3xl px-[30px] py-[26px] mt-[10px] mb-[20px]  rounded-[10px] text-black bg-white after:content-[""]'
-						/>
+						<div className='c-password h-[90px] w-full text-3xl px-[30px] py-[26px] mt-[10px] mb-[20px] rounded-[10px] text-black bg-white'>
+							<input
+								type={!isPasswordShown ? 'password' : 'text'}
+								className='w-full h-full bg-inherit'
+							/>
+							<div
+								// @FIXME: fix eye_shown icon
+								className={
+									!isPasswordShown ? 'c-password-eye' : 'c-password-eye_shown'
+								}
+								onClick={showPassword}
+							></div>
+						</div>
 						<label className='text-3xl ml-2.5' htmlFor='password__input'>
 							Кто ты?
 						</label>
