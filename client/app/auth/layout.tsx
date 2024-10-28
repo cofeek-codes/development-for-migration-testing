@@ -1,15 +1,6 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import '../globals.scss'
 import Header from '@/components/header/Header'
-
-const EuclidRegular = localFont({
-	src: '../fonts/EuclidCircularB-Regular.otf',
-})
-
-const EuclidBold = localFont({
-	src: '../fonts/EuclidCircularB-Bold.otf',
-})
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
