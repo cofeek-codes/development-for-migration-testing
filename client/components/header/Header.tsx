@@ -1,12 +1,43 @@
+'use client'
+
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef } from 'react'
 import logo from '/assets/logo.png'
+import search from '/assets/search.png'
+import settings from '/assets/settings.png'
 
 const Header = () => {
+	const search_ref = useRef<HTMLInputElement>(null)
+
+	const handleClick = () => {
+		search_ref.current!.focus()
+	}
 	return (
-		<header className='flex w-full justify-start items-center fixed left-0 top-[10px]'>
-			<div>
-				<Image src={logo} width={167} height={98} alt='logo' />
+		<header className='flex w-full justify-between bg-purple items-center left-0'>
+			<div className='header__logo my-[8px] ml-[25px]'>
+				<Image src={logo} width={102} height={74} alt='logo' />
+			</div>
+			<div className='flex items-center'>
+				<div className='header__search flex items-center mr-[25px]'>
+					<div className='relative'>
+						<Image
+							className='absolute left-[17px] top-[10%]'
+							onClick={handleClick}
+							src={search}
+							width={45}
+							height={45}
+							alt='search'
+						/>
+						<input
+							type='text'
+							ref={search_ref}
+							className='bg-background h-[56px] w-[343px] text-[40px] rounded-[30px] text-white'
+						/>
+					</div>
+				</div>
+				<div className='header__settings mr-[25px]'>
+					<Image src={settings} width={47} height={50} alt='settings' />
+				</div>
 			</div>
 		</header>
 	)
