@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import logo from '/assets/logo.png'
 import { useState } from 'react'
 import LoginForm from '@/components/auth/LoginForm'
@@ -22,9 +21,9 @@ export default function Auth() {
 			</header>
 			<div className='max-w-[700px]'>
 				{isLogin ? (
-					<LoginForm props={{ changeForm: changeForm }} />
+					<LoginForm changeForm={changeForm} />
 				) : (
-					<RegisterForm props={{ changeForm: changeForm }} />
+					<RegisterForm changeForm={changeForm} />
 				)}
 			</div>
 		</>

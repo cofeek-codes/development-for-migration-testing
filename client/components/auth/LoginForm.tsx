@@ -43,7 +43,13 @@ const LoginForm = (props: Props) => {
 					></div>
 				</div>
 				<div className='text-right mx-0 my-[30px]'>
-					<button className='text-[25px]' onClick={() => props.changeForm()}>
+					<button
+						className='text-[25px]'
+						onClick={e => {
+							e.preventDefault()
+							props.changeForm()
+						}}
+					>
 						Регистрация
 					</button>
 				</div>
