@@ -11,7 +11,6 @@ const RegisterForm = (props: Props) => {
 	const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
 
 	function showPassword() {
-		console.log('eye pressed')
 		setIsPasswordShown(!isPasswordShown)
 	}
 

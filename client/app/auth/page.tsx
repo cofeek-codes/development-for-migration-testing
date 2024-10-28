@@ -8,7 +8,7 @@ import LoginForm from '@/components/auth/LoginForm'
 import RegisterForm from '@/components/auth/RegisterForm'
 
 export default function Auth() {
-	const [isLogin, setIsLogin] = useState<boolean>(false)
+	const [isLogin, setIsLogin] = useState<boolean>(true)
 
 	const changeForm = () => {
 		setIsLogin(!isLogin)
