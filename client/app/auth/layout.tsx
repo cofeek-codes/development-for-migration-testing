@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '../globals.scss'
+import Header from '@/components/header/Header'
 
 const EuclidRegular = localFont({
 	src: '../fonts/EuclidCircularB-Regular.otf',
@@ -21,8 +22,11 @@ export default function AuthLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div className='h-screen w-screen flex justify-center items-center flex-col text-white bg-background'>
-			{children}
-		</div>
+		<>
+			<Header />
+			<div className='h-screen w-screen flex justify-center items-center flex-col text-white bg-background'>
+				{children}
+			</div>
+		</>
 	)
 }
