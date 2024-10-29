@@ -20,6 +20,10 @@
 	}
 }
 
+body {
+	overflow-y: hidden;
+}
+
 .c-select {
 	&::after {
 		content: url('../assets/dropdown.png');
