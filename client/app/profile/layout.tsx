@@ -15,7 +15,7 @@ export default function ProfileLayout({
 	return (
 		<>
 			<Header />
-			<div className='h-screen w-screen flex flex-col text-white bg-background'>
+			<div className='h-full w-screen flex flex-col text-white bg-background'>
 				{children}
 			</div>
 		</>

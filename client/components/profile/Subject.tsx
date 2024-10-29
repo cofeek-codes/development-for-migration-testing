@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Subject = () => {
 	return (
-		<div className='w-full flex justify-center flex-col'>
+		<div className='mb-[25px]'>
 			{/* title bar */}
 			<div className='flex w-full justify-center font-regular mb-[5px] text-[30px]'>
 				Основное
