@@ -1,26 +1,17 @@
 import Student from '@/components/profile/Student'
-import Image from 'next/image'
-
-import arrow from '/assets/arrow.png'
+import News from '@/components/profile/News'
+import Subject from '@/components/profile/Subject'
 
 const Profile = () => {
 	return (
 		<div className='w-[1080px] px-[30px] mx-auto'>
 			<Student />
 			{/* main div */}
-			<div className='mt-[25px] flex justify-between'>
+			<div className='mt-[25px] flex'>
 				{/* left div */}
-				<div className='flex justify-center items-center bg-purple'>
-					{/* title bar */}
-					<div className='flex justify-start items-center'>
-						<div>
-							<Image src={arrow} width={26} height={32} alt='go back arrow' />
-						</div>
-						<div>Математика</div>
-					</div>
-				</div>
+				<Subject />
 				{/* right div */}
-				<div></div>
+				<News />
 			</div>
 		</div>
 	)
