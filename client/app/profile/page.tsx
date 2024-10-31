@@ -12,11 +12,12 @@ const Profile = () => {
 			<div className='mt-[25px] flex gap-[25px]'>
 				{/* left div */}
 				<div className='w-full flex justify-center flex-col'>
+					{/* @TODO: make a transition animation  */}
 					<Subject />
 					<Additional />
 				</div>
 				{/* right div */}
-				<div className='w-full flex justify-center flex-col ml-[25px]'>
+				<div className='w-full flex justify-center flex-col'>
 					<News />
 					<Subscriptions />
 				</div>

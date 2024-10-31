@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Subject = () => {
 	return (
-		<div className='mb-[25px]'>
+		<div className='mb-[25px] w-[319px]'>
 			{/* title bar */}
 			<div className='flex w-full justify-center font-regular mb-[5px] text-[30px]'>
 				Основное
@@ -23,15 +23,15 @@ const Subject = () => {
 					<div>Кабинет: Иванов И.И.</div>
 				</div>
 				{/* themes */}
-				<div className='flex justity-start w-full flex-col'>
-					<ul>
-						<li className='list-disc'>
+				<div className='flex justity-start w-full flex-col mt-[10px]'>
+					<div>
+						<div className='list-disc'>
 							<a href=''>Тема 1</a>
-						</li>
-						<li className='list-disc'>
+						</div>
+						<div className='list-disc'>
 							<a href=''>Тема 2</a>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

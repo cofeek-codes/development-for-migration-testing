@@ -3,7 +3,7 @@ import Post from './Post'
 
 const News = () => {
 	return (
-		<div className='mb-[25px]'>
+		<div className='mb-[25px] w-[686px]'>
 			{/* inner div */}
 			<div className='flex w-full justify-center font-regular text-[30px] mb-[5px]'>
 				Новости
