@@ -15,6 +15,8 @@ const News = () => {
 					<Post />
 					<Post />
 					<Post />
+					<Post />
+					<Post />
 				</div>
 			</div>
 		</div>
