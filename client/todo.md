@@ -1,0 +1,1 @@
+- [ ] Add `mx-[25px]` to every block
