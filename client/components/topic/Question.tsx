@@ -5,6 +5,7 @@ const Question = () => {
 		<div className='mb-[15px]'>
 			{/* question content */}
 			<div className='text-[18px] mb-[10px]'>Вопрос 1: Что такое логарифм?</div>
+			{/* @TODO: fix radio buttons according to template */}
 			{/* answers wrapper */}
 			<div className='flex flex-wrap'>
 				<label className='container'>
