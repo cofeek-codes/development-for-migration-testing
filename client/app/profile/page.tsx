@@ -2,7 +2,7 @@ import Student from '@/components/profile/Student'
 import News from '@/components/profile/News'
 import Subject from '@/components/profile/Subject'
 import Additional from '@/components/profile/Additional'
-import Subscriptions from '@/components/profile/Subscriptions'
+import Teachers from '@/components/profile/Teachers'
 
 const Profile = () => {
 	return (
@@ -19,7 +19,7 @@ const Profile = () => {
 				{/* right div */}
 				<div className='w-full flex justify-center flex-col'>
 					<News />
-					<Subscriptions />
+					<Teachers />
 				</div>
 			</div>
 		</div>
