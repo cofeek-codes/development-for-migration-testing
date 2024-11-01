@@ -7,10 +7,10 @@ import search from '/assets/search.png'
 import settings from '/assets/settings.png'
 
 const Header = () => {
-	const search_ref = useRef<HTMLInputElement>(null)
+	const searchRef = useRef<HTMLInputElement>(null)
 
 	const handleClick = () => {
-		search_ref.current!.focus()
+		searchRef.current!.focus()
 	}
 	return (
 		<header className='flex w-full justify-between bg-purple items-center left-0'>
@@ -30,7 +30,7 @@ const Header = () => {
 						/>
 						<input
 							type='text'
-							ref={search_ref}
+							ref={searchRef}
 							className='bg-background h-[56px] w-[343px] text-[40px] rounded-[30px] text-white'
 						/>
 					</div>
