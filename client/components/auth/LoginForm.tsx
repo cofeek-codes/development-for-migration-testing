@@ -30,10 +30,10 @@ const LoginForm = (props: Props) => {
 				<label className='text-3xl ml-2.5' htmlFor='password__input'>
 					Пароль
 				</label>
-				<div className='c-password h-[90px] w-full text-3xl px-[30px] py-[26px] mt-[10px] mb-[20px] rounded-[10px] text-black bg-white'>
+				<div className='c-password h-[90px] w-full text-3xl pr-[30px] py-[26px] mt-[10px] mb-[20px] rounded-[10px] text-black bg-white'>
 					<input
 						type={!isPasswordShown ? 'password' : 'text'}
-						className='w-full h-[90px] bg-inherit'
+						className='w-full h-[90px] rounded-[10px] pl-[30px] bg-inherit'
 					/>
 					<div
 						className={
