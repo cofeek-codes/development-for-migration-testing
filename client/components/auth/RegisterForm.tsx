@@ -50,6 +50,7 @@ const RegisterForm = (props: Props) => {
 						</label>
 						<div className='c-select flex justify-center items-center h-[90px] w-full text-3xl px-[30px] py-[26px] mt-[10px] rounded-[10px] text-black bg-white appearance-none'>
 							<select className='appearance-none w-full h-full bg-inherit'>
+							{/* @TODO: fix select behaviour */}
 								<option value='student'>Студент</option>
 								<option value='teacher'>Преподаватель</option>
 							</select>
