@@ -1,11 +1,10 @@
 import Image from 'next/image'
-import React from 'react'
-import avatar from '/assets/avatar.png'
 import Link from 'next/link'
+import avatar from '/assets/avatar.png'
 
-const Student = () => {
+const Teacher = () => {
 	return (
-		<div className='mt-[25px] ml-[25px] flex items-center'>
+		<div className='mt-[25px] ml-[25px] flex'>
 			{/* avatar */}
 			<div className='mr-[15px]'>
 				<Image
@@ -17,11 +16,10 @@ const Student = () => {
 				/>
 			</div>
 			{/* name and portfolio */}
-			<div>
+			<div className='flex flex-col justify-center'>
 				<div className='text-[27px] mb-[5px]'>Иванов Иван Иванович</div>
-				<div className='text-[30px] mb-[30px]'>ДС-301</div>
 				<div className='flex h-[75px] justify-center items-center bg-purple w-[228px] rounded-[22px]'>
-					<Link href={'/'} className='w-inherit text-[30px]'>
+					<Link href={'/portfolio'} className='w-inherit text-[30px]'>
 						Портфолио
 					</Link>
 				</div>
@@ -30,4 +28,4 @@ const Student = () => {
 	)
 }
 
-export default Student
+export default Teacher

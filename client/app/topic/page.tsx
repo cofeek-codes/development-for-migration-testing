@@ -1,11 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import arrow from '/assets/arrow.png'
 import Lection from '@/components/topic/Lection'
 import Test from '@/components/topic/Test'
+import arrow from '/assets/arrow.png'
 
 const Topic = () => {
 	// @TODO: add 3rd tab
@@ -21,9 +21,9 @@ const Topic = () => {
 					</div>
 					<div className='text-[35px]'>Понятие логарифма</div>
 				</div>
-				<div className='flex items-center'>
+				<div className='flex'>
 					{/* left */}
-					<div className='p-[25px] w-[320px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
+					<div className='p-[25px] w-[320px] h-[800px] bg-purple rounded-[22px] mr-[25px]'>
 						<div className='*:mb-[5px] last:mb-0'>
 							<div>
 								<button
@@ -52,7 +52,7 @@ const Topic = () => {
 					</div>
 
 					{/* right */}
-					<div className='w-[685px] relative p-[25px]  h-[600px] bg-purple rounded-[22px]'>
+					<div className='w-[685px] relative p-[25px] h-[800px] bg-purple rounded-[22px]'>
 						{tabs[selectedTab]}
 					</div>
 				</div>

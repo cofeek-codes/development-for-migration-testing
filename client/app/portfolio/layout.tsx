@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import '../globals.scss'
 
 export const metadata: Metadata = {
-	title: 'Профиль',
-	description: 'Страница профиля пользователя',
+	title: 'Портфолио',
+	description: 'Страница с проектами пользователя',
 }
 
 export default function TopicLayout({

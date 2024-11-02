@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import Link from 'next/link'
+import { useRef } from 'react'
 import logo from '/assets/logo.png'
 import search from '/assets/search.png'
 import settings from '/assets/settings.png'
@@ -15,7 +16,9 @@ const Header = () => {
 	return (
 		<header className='flex w-full justify-between bg-purple items-center left-0'>
 			<div className='header__logo my-[8px] ml-[25px]'>
-				<Image src={logo} width={102} height={74} alt='logo' />
+				<Link href={'/profile'}>
+					<Image src={logo} width={102} height={74} alt='logo' />
+				</Link>
 			</div>
 			<div className='flex items-center'>
 				<div className='header__search flex items-center mr-[25px]'>
@@ -31,7 +34,7 @@ const Header = () => {
 						<input
 							type='text'
 							ref={searchRef}
-							className='bg-background h-[56px] w-[343px] text-[40px] rounded-[30px] text-white'
+							className='bg-background h-[56px] w-[343px] pl-[70px] pr-[20px] text-[25px] rounded-[30px] text-white'
 						/>
 					</div>
 				</div>

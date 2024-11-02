@@ -1,6 +1,6 @@
-import React from 'react'
-import arrow from '/assets/arrow.png'
 import Image from 'next/image'
+import arrowRight from '/assets/arrow-right.png'
+import arrow from '/assets/arrow.png'
 
 const Subject = () => {
 	return (
@@ -9,7 +9,7 @@ const Subject = () => {
 			<div className='flex w-full justify-center font-regular mb-[5px] text-[30px]'>
 				Основное
 			</div>
-			<div className='flex flex-col rounded-[22px] justify-start items-center bg-purple pt-[25px] min-h-[447px] pl-[25px]'>
+			<div className='flex flex-col rounded-[22px] justify-start items-center bg-purple p-[25px] h-[447px] overflow-scroll'>
 				{/* subject title  */}
 				<div className='flex justify-start items-center w-full'>
 					<div className='mr-[30px]'>
@@ -17,19 +17,37 @@ const Subject = () => {
 					</div>
 					<div className='text-[22px]'>Математика</div>
 				</div>
-				{/* teacher info */}
-				<div className='mt-[13px] flex justify-start w-full flex-col'>
-					<div>Преподаватель: Иванов И.И.</div>
-					<div>Кабинет: Иванов И.И.</div>
-				</div>
-				{/* themes */}
-				<div className='flex justity-start w-full flex-col mt-[10px]'>
+				{/* groups */}
+				<div className='flex justity-start w-full flex-col text-[18px] mt-[10px]'>
+					<p className='text-[20px] mb-[15px]'>Группа</p>
 					<div>
-						<div className='list-disc'>
-							<a href=''>Тема 1</a>
+						<div>
+							<a
+								className='flex justify-between items-center mb-[10px]'
+								href=''
+							>
+								<p>ИСиП-401</p>
+								<Image
+									src={arrowRight}
+									width={18}
+									height={15}
+									alt='go to page'
+								/>
+							</a>
 						</div>
-						<div className='list-disc'>
-							<a href=''>Тема 2</a>
+						<div>
+							<a
+								className='flex justify-between items-center mb-[10px]'
+								href=''
+							>
+								<p>ИСиП-401</p>
+								<Image
+									src={arrowRight}
+									width={18}
+									height={15}
+									alt='go to page'
+								/>
+							</a>
 						</div>
 					</div>
 				</div>
