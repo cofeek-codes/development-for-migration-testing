@@ -1,6 +1,6 @@
 import Additional from '@/components/profile/Additional'
 import News from '@/components/profile/News'
-import Subject from '@/components/profile/Subject'
+import Subjects from '@/components/profile/Subjects'
 import Teacher from '@/components/profile/Teacher'
 import Teachers from '@/components/profile/Teachers'
 
@@ -13,7 +13,7 @@ const Profile = () => {
 				{/* left div */}
 				<div className='w-full flex justify-center flex-col'>
 					{/* @TODO: make a transition animation  */}
-					<Subject />
+					<Subjects />
 					<Additional />
 				</div>
 				{/* right div */}
