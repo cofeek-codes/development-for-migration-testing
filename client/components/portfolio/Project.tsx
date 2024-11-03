@@ -15,7 +15,7 @@ const Project = (props: IProject) => {
 			</div>
 			<div className='flex items-end'>
 				<Link
-					className='bg-lightPurple rounded-[22px] py-[10px] px-[35px]'
+					className='bg-lightPurple hover:bg-buttonsHover hover:transition-[0.3s] transition-[0.3s] rounded-[22px] py-[10px] px-[35px]'
 					href={props.url}
 				>
 					<span className='text-[15px] font-regular'>Перейти</span>
