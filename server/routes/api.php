@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\MarkController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(AuthController::class)->prefix('/auth')->group(function () {
+	Route::get('/login', 'login');
+});
+Route::controller(UserController::class)->group(function () {});
 Route::controller(AnswerController::class)->group(function () {});
 Route::controller(GroupController::class)->group(function () {});
 Route::controller(LectureController::class)->group(function () {});
