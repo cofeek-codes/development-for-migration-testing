@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class ProjectController extends Controller
 {
     function getAll() {
-        return User::findOrFail(Auth::id())->projects;
+        return Auth::id();
+        // return User::find(Auth::id())->projects;
     }
 
     function addProject(Request $request) {
@@ -23,7 +24,7 @@ class ProjectController extends Controller
     }
 
     function getOne($id) {
-        return User::findOrFail($id);
+        return Project::findOrFail($id);
     }
 
     function updateProject(Request $request, $id) {

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'patronymic',
         'photo',
         'group_id',
-        'rile_id',
+        'role_id',
         'login',
         'password',
     ];

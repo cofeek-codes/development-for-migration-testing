@@ -26,14 +26,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->prefix('/auth')->group(function () {
-	Route::get('/login', 'login');
+	Route::post('/login', 'login');
+	Route::get('/logout', 'logout');
+	// For tests
+	Route::get('/add', 'add');
 });
 Route::controller(UserController::class)->group(function () {});
 Route::controller(AnswerController::class)->group(function () {});
 Route::controller(GroupController::class)->group(function () {});
 Route::controller(LectureController::class)->group(function () {});
 Route::controller(MarkController::class)->group(function () {});
-Route::controller(ProjectController::class)->group(function () {});
+Route::controller(ProjectController::class)->prefix('/project')->group(function () {
+	Route::get('/getAll', 'getAll');
+	Route::get('/getOne/{id}', 'getOne');
+	Route::post('/addProject', 'addProject');
+	Route::put('/updateProject/{id}', 'updateProject');
+	Route::delete('/deleteProject', 'deleteProject');
+});
 Route::controller(QuestionController::class)->group(function () {});
 Route::controller(SubjectController::class)->group(function () {});
 Route::controller(TestController::class)->group(function () {});
