@@ -64,6 +64,7 @@ const Additional = () => {
 						type='text'
 						className='px-[15px] h-full w-[230px] bg-background text-[18px] mr-[5px]'
 						maxLength={30}
+						placeholder='Введите группу'
 					/>
 					<div className='flex mr-[15px]'>
 						<Image
@@ -89,7 +90,7 @@ const Additional = () => {
 
 			<div
 				className='flex justify-center items-center cursor-pointer bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] h-[75px] rounded-[0px_0px_22px_22px] text-[25px]'
-				onClick={() => setAddGroupOpen(true)}
+				onClick={() => setAddGroupOpen(!isAddGroupOpen)}
 			>
 				Добавить
 			</div>
