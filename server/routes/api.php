@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\LectureController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::controller(AnswerController::class)->group(function () {});
+Route::controller(GroupController::class)->group(function () {});
+Route::controller(LectureController::class)->group(function () {});
+Route::controller(MarkController::class)->group(function () {});
+Route::controller(ProjectController::class)->group(function () {});
+Route::controller(QuestionController::class)->group(function () {});
+Route::controller(SubjectController::class)->group(function () {});
+Route::controller(TestController::class)->group(function () {});
+Route::controller(TopicController::class)->group(function () {});
