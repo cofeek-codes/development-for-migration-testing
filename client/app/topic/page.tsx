@@ -4,13 +4,13 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import Lection from '@/components/topic/Lection'
-import Test from '@/components/topic/Test'
+import TestEditor from '@/components/topic/TestEditor'
 import Link from 'next/link'
 import arrow from '/assets/arrow.png'
 
 const Topic = () => {
 	const [isAddOpen, setAddOpen] = useState(false)
-	const tabs = [<Lection />, <Test />]
+	const tabs = [<Lection />, <TestEditor />]
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 	return (
 		<div className='h-screen w-[1080px] mx-auto'>
