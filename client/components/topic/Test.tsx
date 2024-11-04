@@ -1,16 +1,23 @@
-import React from 'react'
 import Question from './Question'
 
 const Test = () => {
 	return (
-		<div>
-			{/* title */}
-			<div className='font-bold text-[23px] mb-[15px]'>Тест: Логарифмы</div>
-			{/* question 1 */}
-			<Question />
-			<Question />
-			<div className='absolute right-[25px] bottom-[25px] bg-lightPurple w-[130px] leading-[15px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
-				Отправить
+		<div className='flex flex-col justify-between h-full'>
+			<div>
+				<div className='font-bold text-[23px] mb-[15px]'>Тест: Логарифмы</div>
+				<Question />
+				<Question />
+			</div>
+			<div className='flex leading-[3px] text-[15px] self-end mt-[25px]'>
+				<button className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[230px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'>
+					Результаты прохождения
+				</button>
+				<button className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'>
+					Сохранить
+				</button>
+				<button className=' bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px]'>
+					Удалить
+				</button>
 			</div>
 		</div>
 	)
