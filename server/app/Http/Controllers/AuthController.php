@@ -11,7 +11,8 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('login', 'password'))) {
             return ['code'=>401, 'message' => 'Неправильный пароль'];
         } else {
-            return ['code'=>200, 'message' => 'Правильно'];
+            // @TODO make hash
+            return ['code'=>200, 'message' => Auth::id()];
         }
     }
 
