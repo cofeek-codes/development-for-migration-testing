@@ -23,7 +23,7 @@ const TestEditor = () => {
 				{
 					id: 1,
 					title: '',
-					isCorrect: false,
+					isCorrect: true,
 				},
 			],
 		},
@@ -39,9 +39,25 @@ const TestEditor = () => {
 				<div className='flex flex-col h-[630px] w-full overflow-y-auto'>
 					{questions.map((question, index) => {
 						return (
-							<div className='mb-[20px]' key={question.id}>
+							<div className='mb-[20px] mr-[10px]' key={question.id}>
 								<div className='mb-[15px]'>
-									<p className='text-[20] mb-[10px]'>Вопрос {index + 1}</p>
+									<div className='flex mb-[10px] justify-between'>
+										<p className='text-[20] '>Вопрос {index + 1}</p>
+										<Image
+											src={cancel}
+											height={25}
+											width={25}
+											alt='delete'
+											className='cursor-pointer'
+											onClick={() => {
+												questions.length > 1
+													? setQuestions(
+															questions.filter(x => x.id != question.id)
+													  )
+													: ''
+											}}
+										/>
+									</div>
 									<input
 										type='text'
 										className='bg-background w-full text-[18] h-[40px] px-[10px] rounded-[10px] outline-none'
@@ -66,7 +82,7 @@ const TestEditor = () => {
 													</p>
 													<input
 														type='text'
-														className='text-[15px] h-[35px] w-[480px] px-[10px] rounded-[10px] outline-none bg-background'
+														className='text-[15px] h-[35px] w-[470px] px-[10px] rounded-[10px] outline-none bg-background'
 														placeholder='Введите ответ'
 														onChange={input => {
 															const items = question.answers.map((item: any) =>
@@ -93,7 +109,35 @@ const TestEditor = () => {
 													/>
 												</div>
 												<label className='mb-[20px] container w-[25px]  flex justify-center items-center h-full'>
-													<input type='radio' />
+													<input
+														type='radio'
+														name={'question_' + question.id}
+														defaultChecked={index === 0}
+														onChange={() => {
+															const items = question.answers.map((item: any) =>
+																item.id === answer.id
+																	? {
+																			...item,
+																			isCorrect: true,
+																	  }
+																	: {
+																			...item,
+																			isCorrect: false,
+																	  }
+															)
+
+															const questionAnswers = questions.map(
+																(itemq: any) =>
+																	itemq.id === question.id
+																		? {
+																				...itemq,
+																				answers: items,
+																		  }
+																		: itemq
+															)
+															setQuestions(questionAnswers)
+														}}
+													/>
 													<span className='checkmark'></span>
 												</label>
 
@@ -103,6 +147,23 @@ const TestEditor = () => {
 													width={30}
 													alt='delete'
 													className='cursor-pointer'
+													onClick={() => {
+														question.answers.length > 1 &&
+														answer.isCorrect == false
+															? setQuestions(
+																	questions.map(item =>
+																		item.id == question.id
+																			? {
+																					...item,
+																					answers: item.answers.filter(
+																						x => x.id != answer.id
+																					),
+																			  }
+																			: item
+																	)
+															  )
+															: ''
+													}}
 												/>
 											</div>
 										</div>
@@ -153,7 +214,7 @@ const TestEditor = () => {
 									{
 										id: 1,
 										title: '',
-										isCorrect: false,
+										isCorrect: true,
 									},
 								],
 							},
@@ -162,11 +223,11 @@ const TestEditor = () => {
 				>
 					Добавить вопрос
 				</button>
-				<button className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'>
+				<button
+					className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'
+					onClick={() => console.log(questions)}
+				>
 					Сохранить
-				</button>
-				<button className=' bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px]'>
-					Удалить
 				</button>
 			</div>
 		</div>
