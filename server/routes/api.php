@@ -23,6 +23,7 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 	Route::get('/logout', 'logout');
 	// For tests
 	Route::get('/add', 'add');
+	Route::get('/id', 'id');
 });
 Route::controller(UserController::class)->prefix('/user')->group(function () {
 	Route::get('/getSubjects', 'getSubjects');
@@ -47,6 +48,8 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::delete('/deleteTest/{test_id}', 'deleteTest');
 	Route::delete('/deleteLection/{lection_id}', 'deleteTest');
 	Route::get('/getMarks/{test_id}', 'getMarks');
+	Route::get('/getMark/{mark_id}', 'getMark');
+	Route::put('/updateMark/{mark_id}', 'updateMark');
 });
 
 Route::controller(AdminController::class)->prefix('/admin')->group(function () {
@@ -65,4 +68,7 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 	Route::delete('/deleteUser', 'deleteUser');
 	Route::delete('/deleteGroup', 'deleteGroup');
 	Route::delete('/deleteSubject', 'deleteSubject');
+
+	Route::post('/addNews', 'addNews');
+	Route::delete('/deleteNews', 'deleteNews');
 });

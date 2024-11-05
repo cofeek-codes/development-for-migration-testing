@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     function login(Request $request) {
-        if (!Auth::attempt($request->only('login', 'password'))) {
+        if (!Auth::attempt($request->only('login', 'password'), $request->has('remember'))) {
             return ['code'=>401, 'message' => 'Неправильный пароль'];
         } else {
             // @TODO make hash
@@ -20,6 +20,10 @@ class AuthController extends Controller
     function logout() {
         Auth::logout();
         return ['code' => 206, 'message' => 'Успешно'];
+    }
+
+    function id() {
+        return ['code'=>200, 'message' => Auth::id()];
     }
 
     function add() {
