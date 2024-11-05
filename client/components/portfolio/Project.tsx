@@ -29,8 +29,8 @@ const Project = (props: IProject) => {
 				e.preventDefault()
 				setIsClicked(true)
 				setPoints({
-					x: e.clientX - 200,
-					y: e.clientY - 200,
+					x: e.clientX,
+					y: e.clientY,
 				})
 			}}
 		>

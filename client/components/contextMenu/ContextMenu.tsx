@@ -1,25 +1,46 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 type Props = {
 	points: { x: number; y: number }
 }
 
-const ContextMenu = (props: Props) => {
+const ContextMenu = ({ points }: Props) => {
+	const menuRef = useRef<HTMLDivElement>(null)
+
 	useEffect(() => {
-		console.log(props)
-	})
+		if (!menuRef.current) return
+
+		const rect = menuRef.current.getBoundingClientRect()
+		const screenWidth = window.innerWidth
+		const screenHeight = window.innerHeight
+
+		let left = points.x
+		let top = points.y
+
+		// Adjust position if menu goes out of bounds
+		if (rect.right > screenWidth) {
+			left -= rect.width
+		}
+		if (rect.bottom > screenHeight) {
+			top -= rect.height
+		}
+
+		// Add offset to bring menu closer to cursor
+		left += 10
+		top += 10
+
+		menuRef.current.style.left = `${left}px`
+		menuRef.current.style.top = `${top}px`
+	}, [points])
+
 	return (
-		// @FIXME: fix positioning of ContextMenu
 		<div
-			className={
-				'bg-lightPurple border-2 overflow-hidden  border-[white] flex justify-center items-center flex-col rounded-[22px] w-[165px] h-[100px]'
-			}
+			ref={menuRef}
+			className='bg-lightPurple border-2 overflow-hidden border-[white] flex justify-center items-center flex-col rounded-[22px] w-[165px] h-[100px]'
 			style={{
-				position: 'absolute',
-				left: props.points.x + 'px',
-				top: props.points.y + 'px',
+				position: 'fixed',
 			}}
 		>
 			<div className='text-[20px] hover:bg-buttonsHover flex items-center h-full w-full border-b-2 border-b-[white] pl-[15px]'>
