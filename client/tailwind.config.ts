@@ -19,6 +19,7 @@ const config: Config = {
 				purple: '#260047',
 				lightPurple: '#3c006c',
 				background: '#0a0019',
+				buttonsHover: '#1B0030',
 			},
 			fontFamily: {
 				regular: ['Euclid Circular B Regular'],
