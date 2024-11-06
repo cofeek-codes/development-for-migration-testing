@@ -14,7 +14,7 @@ const Profile = () => {
 				{/* left div */}
 				<div className='w-full flex justify-center flex-col'>
 					{/* @TODO: make a transition animation  */}
-					<Subjects />
+					<Subject />
 					<Additional />
 				</div>
 				{/* right div */}
