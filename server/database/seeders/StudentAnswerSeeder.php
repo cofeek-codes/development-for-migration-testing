@@ -15,7 +15,7 @@ class StudentAnswerSeeder extends Seeder
     {
         DB::table('Student_answers')->insert([
             'user_id' => 1,
-            'answer_id' => 1,
+            'answer_id' => 2,
             'question_id' => 1,
         ]);
     }

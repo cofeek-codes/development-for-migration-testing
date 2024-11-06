@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Lecture;
 use App\Models\Mark;
+use App\Models\Question;
+use App\Models\Student_answer;
 use App\Models\Test;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -19,15 +22,57 @@ class TopicController extends Controller
     }
 
     function getTest($test_id) {
-        return ['code' => 200, 'message' => Test::find($test_id)];
+        $test = Test::find($test_id)->only(['id', 'title']);
+        $questions = Question::where('test_id', $test_id)->get();
+        $result = [];
+        foreach($questions as $question) {
+            array_push( $result, ['id' => $question->id,'title' => $question->title, 'answers' => Answer::where('question_id', $question->id)->get()]);
+        }
+        return ['code' => 200, 'message' => ['test' => $test, 'questions' => $result]];
+
+        // {
+        //     "title": '',
+        //     "questions": [{
+        //         "title": '',
+        //         "answers": [{
+        //             "title": '',
+        //             "correct": true
+        //         }
+        //         ]
+        //     },]
+        // }
     }
 
     function getMarks($test_id) {
-        return ['code' => 200, 'message' => Test::find($test_id)->marks];
+        // [
+        // {
+        // idMark, time, date, mark, user[name, surname, patronymic]
+        // }
+        // ]
+
+        $marks = Test::find($test_id)->marks;
+        $marksUser = [];
+        foreach ($marks as $mark) {
+            $user = Mark::find($mark->user_id)->user;
+            array_push($marksUser, ['mark' => $mark, 'user' => $user->only(['id', 'name', 'surname', 'patronymic'])]);
+        }
+        return ['code' => 200, 'message' => $marksUser];
     }
 
-    function getMark($mark_id) {
-        return ['code' => 200, 'message' => Mark::find($mark_id)];
+    function getAnswers($test_id, $user_id) {
+        $questions = Question::where('test_id', $test_id)->get();
+        $questionsAnswers = [];
+        foreach ($questions as $question) {
+            $answer = Student_answer::where('question_id', $question->id)->get();
+            array_push($questionsAnswers, ['question' => ['title' => $question->title, 'answer' => Answer::find($answer[0]->answer_id)->only(['title', 'correct'])]]);
+        }
+        return ['code' => 200, 'message' => $questionsAnswers];
+
+        // [
+        // {
+        // question: [title, answer:[title, isCorrect]]
+        // },
+        // ] 
     }
 
     function addLecture(Request $request) {
@@ -36,6 +81,18 @@ class TopicController extends Controller
 
     function addTest(Request $request) {
         return ['code' => 201, 'message' => Test::create($request->all())];
+
+        // {
+		// 	id: uuidv4(),
+		// 	title: '',
+		// 	answers: [
+		// 		{
+		// 			id: uuidv4(),
+		// 			title: '',
+		// 			isCorrect: true,
+		// 		},
+		// 	],
+		// }
     }
 
     function deleteLecture($lecture_id) {

@@ -18,4 +18,8 @@ class Test extends Model
     public function marks() : HasMany {
         return $this->hasMany(Mark::class);
     }
+
+    public function question() : HasMany {
+        return $this->hasMany(Question::class);
+    }
 }

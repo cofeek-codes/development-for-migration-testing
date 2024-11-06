@@ -50,7 +50,7 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::delete('/deleteTest/{test_id}', 'deleteTest');
 	Route::delete('/deleteLecture/{lecture_id}', 'deleteLecture');
 	Route::get('/getMarks/{test_id}', 'getMarks');
-	Route::get('/getMark/{mark_id}', 'getMark');
+	Route::get('/getAnswers/{test_id}/{user_id}', 'getAnswers');
 	Route::put('/updateMark/{mark_id}', 'updateMark');
 });
 
