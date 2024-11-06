@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
-    function getAll() {
-        return Auth::id();
+    function getAll($user_id) {
         // return User::find(Auth::id())->projects;
+        return User::find($user_id)->projects;
     }
 
     function addProject(Request $request) {
@@ -23,12 +23,12 @@ class ProjectController extends Controller
         }
     }
 
-    function getOne($id) {
-        return Project::findOrFail($id);
+    function getOne($project_id) {
+        return Project::findOrFail($project_id);
     }
 
-    function updateProject(Request $request, $id) {
-        $project = Project::find($id)->update($request->all());
+    function updateProject(Request $request, $project_id) {
+        $project = Project::find($project_id)->update($request->all());
         if ($project) {
             return ['code' => 201, 'message' => 'Успешно изменено'];
         } else {
@@ -36,8 +36,8 @@ class ProjectController extends Controller
         }
     }
 
-    function deleteProject($id) {
-        $project = Project::find($id)->delete();
+    function deleteProject($project_id) {
+        $project = Project::find($project_id)->delete();
         if ($project) {
             return ['code' => 410, 'message' => 'Удаленно'];
         } else {

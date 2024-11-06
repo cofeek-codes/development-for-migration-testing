@@ -3,12 +3,13 @@
 import cancel from '@/assets/cancel.svg'
 import Image from 'next/image'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 interface IQuestion {
-	id: number
+	id: string
 	title: string
 	answers: {
-		id: number
+		id: string
 		title: string
 		isCorrect: boolean
 	}[]
@@ -17,11 +18,11 @@ interface IQuestion {
 const TestEditor = () => {
 	const [questions, setQuestions] = useState<IQuestion[]>([
 		{
-			id: 1,
+			id: uuidv4(),
 			title: '',
 			answers: [
 				{
-					id: 1,
+					id: uuidv4(),
 					title: '',
 					isCorrect: true,
 				},
@@ -180,7 +181,7 @@ const TestEditor = () => {
 															? {
 																	...item,
 																	answer: item.answers.push({
-																		id: item.answers.length + 1,
+																		id: uuidv4(),
 																		title: '',
 																		isCorrect: false,
 																	}),
@@ -208,11 +209,11 @@ const TestEditor = () => {
 						setQuestions([
 							...questions,
 							{
-								id: questions.length + 1,
+								id: uuidv4(),
 								title: '',
 								answers: [
 									{
-										id: 1,
+										id: uuidv4(),
 										title: '',
 										isCorrect: true,
 									},

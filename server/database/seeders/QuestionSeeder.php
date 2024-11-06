@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class QuestionSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class QuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('questions')->insert([
+            'title' => fake()->title,
+            'test_id' => 1,
+        ]);
     }
 }

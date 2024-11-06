@@ -26,11 +26,11 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 	Route::get('/id', 'id');
 });
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-	Route::get('/getSubjects', 'getSubjects');
-	Route::get('/getUser', 'getUser');
+	Route::get('/getSubjects/{user_id}', 'getSubjects');
+	Route::get('/getUser/{user_id}', 'getUser');
 	Route::get('/getGroups/{subject_id}', 'getGroups');
-	Route::get('/getTopics/{subject_id}/{group_id}', 'getToipcs');
-	Route::post('/addTopic/{subject_id}/{group_id}', 'addTopic');
+	Route::get('/getTopics/{subject_id}/{group_id}', 'getTopics');
+	Route::post('/addTopic', 'addTopic');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
 	Route::get('/getAll', 'getAll');
@@ -41,12 +41,14 @@ Route::controller(ProjectController::class)->prefix('/project')->group(function 
 });
 Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::get('/getMaterials/{topic_id}', 'getMaterials');
-	Route::post('/addLection/{topic_id}', 'addLection');
-	Route::post('/addTest/{topic_id}', 'addTest');
-	Route::put('/updateTest/{test_id}', 'updateTest');
-	Route::put('/updateLection/{lection_id}', 'updateLection');
+	Route::get('/getLecture/{lecture_id}', 'getLecture');
+	Route::get('/getTest/{test_id}', 'getTest');
+	Route::post('/addLecture', 'addLecture');
+	Route::post('/addTest', 'addTest');
+	// Route::put('/updateTest/{test_id}', 'updateTest');
+	Route::put('/updateLecture/{lecture_id}', 'updateLecture');
 	Route::delete('/deleteTest/{test_id}', 'deleteTest');
-	Route::delete('/deleteLection/{lection_id}', 'deleteTest');
+	Route::delete('/deleteLecture/{lecture_id}', 'deleteLecture');
 	Route::get('/getMarks/{test_id}', 'getMarks');
 	Route::get('/getMark/{mark_id}', 'getMark');
 	Route::put('/updateMark/{mark_id}', 'updateMark');

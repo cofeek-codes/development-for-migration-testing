@@ -57,8 +57,4 @@ class User extends Authenticatable
     public function subjects() : HasMany {
         return $this->hasMany(Subject::class);
     }
-
-    public function group() : HasOne {
-        return $this->hasOne(Group::class);
-    }
 }
