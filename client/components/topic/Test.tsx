@@ -31,7 +31,7 @@ const Test = () => {
 				<span>{minutes}:</span>
 				<span>{seconds}</span>
 			</div>
-			<div className='absolute right-[25px] bottom-[25px] bg-lightPurple w-[130px] leading-[15px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
+			<div className=' transition-[0.3s] hover:bg-buttonsHover absolute right-[25px] bottom-[25px] bg-lightPurple w-[130px] leading-[15px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
 				Отправить
 			</div>
 		</div>

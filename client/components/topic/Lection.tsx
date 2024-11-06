@@ -23,7 +23,7 @@ const Lection = () => {
 				была опубликована работа Непера под названием «Описание удивительной
 				таблицы логарифмов».
 			</div>
-			<div className='absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple w-[130px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
+			<div className='transition-[0.3s] hover:bg-buttonsHover absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple w-[130px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
 				Далее
 			</div>
 		</div>

@@ -20,7 +20,7 @@ const Student = () => {
 			<div>
 				<div className='text-[27px] mb-[5px]'>Иванов Иван Иванович</div>
 				<div className='text-[30px] mb-[30px]'>ДС-301</div>
-				<div className='flex h-[75px] justify-center items-center bg-purple w-[228px] rounded-[22px]'>
+				<div className='flex transition-[0.3s] hover:bg-buttonsHover h-[75px] justify-center items-center bg-purple w-[228px] rounded-[22px]'>
 					<Link href={'/'} className='w-inherit text-[30px]'>
 						Портфолио
 					</Link>
