@@ -13,22 +13,22 @@ use Mockery\Matcher\Subset;
 
 class UserController extends Controller
 {
-    function getUser($user_id)
+    function getUser(Request $request)
     {
-        // return ['code' => '206', 'message' => User::find(Auth::id())->get(['name', 'surname', 'patronymic'])];
-        return ['code' => '200', 'message' => User::find($user_id)->get(['name', 'surname', 'patronymic'])];
+        return ['code' => '206', 'message' => User::find($request->cookie('user_id'))->get(['name', 'surname', 'patronymic'])];
+        // return ['code' => '200', 'message' => User::find($user_id)->get(['name', 'surname', 'patronymic'])];
     }
 
-    function getSubjects($user_id)
+    function getSubjects(Request $request)
     {
-        // return ['code' => '206', 'message' => User::find(Auth::id())->subjects];
-        return ['code' => '200', 'message' => User::find($user_id)->subjects];
+        return ['code' => '206', 'message' => User::find($request->cookie('user_id'))->subjects];
+        // return ['code' => '200', 'message' => User::find($user_id)->subjects];
     }
 
-    function getTopics($subject_id)
+    function getTopics($subject_id, Request $request)
     {
         // return ['code' => 200, 'message' => Subject::find(Auth::id())->topics];
-        $user_group_id = User::find(1)->group_id;
+        $user_group_id = User::find($request->cookie('user_id'))->group_id;
         return ['code' => 200, 'message' => Subject::find($subject_id)->topics->where('group_id', $user_group_id)];
     }
 

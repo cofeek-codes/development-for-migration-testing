@@ -26,8 +26,8 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
     Route::get('/id', 'id');
 });
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-    Route::get('/getSubjects/{user_id}', 'getSubjects');
-    Route::get('/getUser/{user_id}', 'getUser');
+    Route::get('/getSubjects/', 'getSubjects');
+    Route::get('/getUser/', 'getUser');
     Route::get('/getTopics/{subject_id}', 'getTopics');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
