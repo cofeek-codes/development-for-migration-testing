@@ -31,11 +31,11 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::get('/getTopics/{subject_id}', 'getTopics');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
-    Route::get('/getAll', 'getAll');
+    Route::get('/getAll/{user_id}', 'getAll');
     Route::get('/getOne/{id}', 'getOne');
     Route::post('/addProject', 'addProject');
     Route::put('/updateProject/{id}', 'updateProject');
-    Route::delete('/deleteProject', 'deleteProject');
+    Route::delete('/deleteProject/{project_id}', 'deleteProject');
 });
 Route::controller(TopicController::class)->prefix('/topic')->group(function () {
     Route::get('/getMaterials/{topic_id}', 'getMaterials');
