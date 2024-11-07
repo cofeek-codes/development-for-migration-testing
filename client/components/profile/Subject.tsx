@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import arrow from '/assets/arrow.png'
 import Image from 'next/image'
 
-const Subject = () => {
+type Props = {
+	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const Subject = (props: Props) => {
 	return (
 		<div className='mb-[25px] w-[319px]'>
 			{/* title bar */}
@@ -12,7 +16,13 @@ const Subject = () => {
 			<div className='flex flex-col rounded-[22px] justify-start items-center bg-purple p-[25px] min-h-[447px]'>
 				{/* subject title  */}
 				<div className='flex justify-start items-center w-full'>
-					<div className='mr-[30px]'>
+					<div
+						onClick={e => {
+							e.preventDefault()
+							props.setIsSubjectOpen(false)
+						}}
+						className='mr-[30px]'
+					>
 						<Image src={arrow} width={26} height={32} alt='go back arrow' />
 					</div>
 					<div className='text-[22px]'>Математика</div>
