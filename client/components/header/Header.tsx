@@ -4,15 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
 import logo from '/assets/logo.png'
-import search from '/assets/search.png'
-import settings from '/assets/settings.png'
+import exit from '/assets/exit.svg'
 
 const Header = () => {
 	const searchRef = useRef<HTMLInputElement>(null)
 
-	const handleClick = () => {
-		searchRef.current!.focus()
-	}
 	return (
 		<header className='flex w-full justify-between bg-purple items-center left-0'>
 			<div className='header__logo my-[8px] ml-[25px]'>
@@ -22,7 +18,7 @@ const Header = () => {
 			</div>
 			<div className='flex items-center'>
 				<div className='header__settings mr-[25px]'>
-					<Image src={settings} width={47} height={50} alt='settings' />
+					<Image src={exit} width={47} height={50} alt='exit' />
 				</div>
 			</div>
 		</header>
