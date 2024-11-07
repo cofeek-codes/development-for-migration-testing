@@ -54,3 +54,6 @@
 **/.fleet
 **/.idea
 **/.vscode
+
+# custom
+serverTemplate/
