@@ -28,7 +28,8 @@ class UserController extends Controller
     function getTopics($subject_id)
     {
         // return ['code' => 200, 'message' => Subject::find(Auth::id())->topics];
-        return ['code' => 200, 'message' => Subject::find($subject_id)->topics];
+        $user_group_id = User::find(1)->group_id;
+        return ['code' => 200, 'message' => Subject::find($subject_id)->topics->where('group_id', $user_group_id)];
     }
 
     function getGroups($subject_id)
