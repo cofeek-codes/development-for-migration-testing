@@ -41,5 +41,6 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
     Route::get('/getMaterials/{topic_id}', 'getMaterials');
     Route::get('/getLecture/{lecture_id}', 'getLecture');
     Route::get('/getTest/{test_id}', 'getTest');
-    // @TODO: discuss get mark
+    Route::post('/sendTest/', 'sendTest');
+    Route::get('/getMark/{test_id}', 'getMark');
 });
