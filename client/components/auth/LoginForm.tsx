@@ -2,12 +2,7 @@
 
 import { useState } from 'react'
 
-type Props = {
-	// @TODO: replace with correct type definition of function
-	changeForm: any
-}
-
-const LoginForm = (props: Props) => {
+const LoginForm = () => {
 	const [isPasswordShown, setIsPasswordShown] = useState<boolean>(false)
 
 	function showPassword() {
@@ -42,18 +37,7 @@ const LoginForm = (props: Props) => {
 						onClick={showPassword}
 					></div>
 				</div>
-				<div className='text-right mx-0 my-[30px]'>
-					<button
-						className='text-[25px]'
-						onClick={e => {
-							e.preventDefault()
-							props.changeForm()
-						}}
-					>
-						Регистрация
-					</button>
-				</div>
-				<button className='h-20 w-full text-3xl bg-lightPurple rounded-[10px] transition-[0.5s] hover:transition-[0.5s] hover:brightness-[90%] active:brightness-[70%]'>
+				<button className='h-20 mt-[40px] w-full text-3xl bg-lightPurple rounded-[10px] transition-[0.5s] hover:transition-[0.5s] hover:brightness-[90%] active:brightness-[70%]'>
 					Вход
 				</button>
 			</form>
