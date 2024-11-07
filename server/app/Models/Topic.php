@@ -10,6 +10,13 @@ class Topic extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'title',
+        'group_id',
+        'subject_id',
+    ];
+
     public function lectures() : HasMany {
         return $this->hasMany(Lecture::class);
     }

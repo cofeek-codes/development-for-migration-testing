@@ -72,7 +72,7 @@ class TopicController extends Controller
         // {
         // question: [title, answer:[title, isCorrect]]
         // },
-        // ] 
+        // ]
     }
 
     function addLecture(Request $request) {
@@ -80,9 +80,18 @@ class TopicController extends Controller
     }
 
     function addTest(Request $request) {
-        return ['code' => 201, 'message' => Test::create($request->all())];
+        $test = Test::create(['title' => $request->title, 'topic_id' => $request->topic_id]);
+        foreach ($request->questions as $question) {
+            $questionCreate = Question::create(['title' => $question->title, 'test_id' => $test->id]);
+            foreach ($question->answers as $answer) {
+                Answer::create(['title' => $answer->title, 'correct' => $answer->isCorrect, 'question_id' => $questionCreate->id]);
+            }
+        }
+        return ['code' => 201, 'message' => 'Создано'];
 
-        // {
+        // 'title': '',
+        // 'topic_id': 1,
+        // "questions": [{
 		// 	id: uuidv4(),
 		// 	title: '',
 		// 	answers: [
@@ -92,7 +101,7 @@ class TopicController extends Controller
 		// 			isCorrect: true,
 		// 		},
 		// 	],
-		// }
+		// }]
     }
 
     function deleteLecture($lecture_id) {
@@ -110,5 +119,5 @@ class TopicController extends Controller
     function updateMark(Request $request, $mark_id) {
         return ['code' => 200, 'message' => Mark::find($mark_id)->update(['mark' => $request->input('mark')])];
     }
-    
+
 }

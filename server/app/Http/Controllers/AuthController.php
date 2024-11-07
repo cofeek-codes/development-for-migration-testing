@@ -13,7 +13,7 @@ class AuthController extends Controller
             return ['code'=>401, 'message' => 'Неправильный пароль'];
         } else {
             // @TODO make hash
-            return ['code'=>200, 'message' => Auth::id()];
+            return ['code'=>200, 'message' => ['id' => Auth::id(), 'role' => Auth::user()->role_id]];
         }
     }
 

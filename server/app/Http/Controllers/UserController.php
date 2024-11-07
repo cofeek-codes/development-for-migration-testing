@@ -33,7 +33,7 @@ class UserController extends Controller
     }
 
     function addTopic(Request $request) {
-        return ['code' => '200', 'message' => Topic::insert($request->all())];
+        return ['code' => '200', 'message' => Topic::create($request->all())];
     }
-    
+
 }

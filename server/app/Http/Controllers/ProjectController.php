@@ -15,7 +15,7 @@ class ProjectController extends Controller
     }
 
     function addProject(Request $request) {
-        $project = Project::insert($request->all());
+        $project = Project::create($request->all());
         if ($project) {
             return ['code' => 201, 'message' => 'Успешно создано'];
         } else {

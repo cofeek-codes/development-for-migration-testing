@@ -33,7 +33,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
 	Route::post('/addTopic', 'addTopic');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
-	Route::get('/getAll', 'getAll');
+	Route::get('/getAll/{user_id}', 'getAll');
 	Route::get('/getOne/{id}', 'getOne');
 	Route::post('/addProject', 'addProject');
 	Route::put('/updateProject/{id}', 'updateProject');
