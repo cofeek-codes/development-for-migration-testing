@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group__subjects', function (Blueprint $table) {
+        Schema::create('group_subject', function (Blueprint $table) {
             $table->id();
             $table->integer('group_id');
             $table->integer('subject_id');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group__subjects');
+        //
     }
 };

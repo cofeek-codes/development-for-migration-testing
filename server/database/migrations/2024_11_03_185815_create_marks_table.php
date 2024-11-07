@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('mark');
             $table->string('date');
             $table->integer('test_id');
-            $table->integer('student_id');
+            $table->integer('user_id');
             $table->time('time');
             $table->timestamps();
         });

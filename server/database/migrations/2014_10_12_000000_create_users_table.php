@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('patronymic');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('password');
             $table->string('login')->unique();
             $table->integer('group_id');
