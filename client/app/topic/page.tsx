@@ -24,29 +24,33 @@ const Topic = () => {
 				<div className='flex items-center'>
 					{/* left */}
 					<div className='p-[25px] w-[320px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
-						<div className='*:mb-[5px] last:mb-0'>
-							<div>
+						<div className='*:mb-[2px] last:mb-0'>
+							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
 								<button
+									className='p-[10px] text-[15px]'
 									onClick={e => {
 										e.preventDefault()
 										setSelectedTab(0)
 									}}
 								>
-									1. Понятие логарифма
+									Понятие логарифма
 								</button>
 							</div>
-							<div>
+							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
 								<button
+									className='p-[10px] text-[15px]'
 									onClick={e => {
 										e.preventDefault()
 										setSelectedTab(1)
 									}}
 								>
-									2. Тест: Логарирфмы
+									Тест: Логарирфмы
 								</button>
 							</div>
-							<div>
-								<button>3. Домашнее задание</button>
+							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
+								<button className='p-[10px] text-[15px]'>
+									Домашнее задание
+								</button>
 							</div>
 						</div>
 					</div>
