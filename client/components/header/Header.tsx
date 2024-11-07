@@ -21,23 +21,6 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className='flex items-center'>
-				<div className='header__search flex items-center mr-[25px]'>
-					<div className='relative'>
-						<Image
-							className='absolute left-[17px] top-[10%]'
-							onClick={handleClick}
-							src={search}
-							width={45}
-							height={45}
-							alt='search'
-						/>
-						<input
-							type='text'
-							ref={searchRef}
-							className='bg-background h-[56px] w-[343px] pl-[70px] pr-[20px] text-[25px] rounded-[30px] text-white'
-						/>
-					</div>
-				</div>
 				<div className='header__settings mr-[25px]'>
 					<Image src={settings} width={47} height={50} alt='settings' />
 				</div>
