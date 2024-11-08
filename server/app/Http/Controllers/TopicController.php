@@ -29,27 +29,9 @@ class TopicController extends Controller
             array_push( $result, ['id' => $question->id,'title' => $question->title, 'answers' => Answer::where('question_id', $question->id)->get()]);
         }
         return ['code' => 200, 'message' => ['test' => $test, 'questions' => $result]];
-
-        // {
-        //     "title": '',
-        //     "questions": [{
-        //         "title": '',
-        //         "answers": [{
-        //             "title": '',
-        //             "correct": true
-        //         }
-        //         ]
-        //     },]
-        // }
     }
 
     function getMarks($test_id) {
-        // [
-        // {
-        // idMark, time, date, mark, user[name, surname, patronymic]
-        // }
-        // ]
-
         $marks = Test::find($test_id)->marks;
         $marksUser = [];
         foreach ($marks as $mark) {
@@ -59,7 +41,7 @@ class TopicController extends Controller
         return ['code' => 200, 'message' => $marksUser];
     }
 
-    function getAnswers($test_id, $user_id) {
+    function getAnswers($test_id) {
         $questions = Question::where('test_id', $test_id)->get();
         $questionsAnswers = [];
         foreach ($questions as $question) {
@@ -67,12 +49,6 @@ class TopicController extends Controller
             array_push($questionsAnswers, ['question' => ['title' => $question->title, 'answer' => Answer::find($answer[0]->answer_id)->only(['title', 'correct'])]]);
         }
         return ['code' => 200, 'message' => $questionsAnswers];
-
-        // [
-        // {
-        // question: [title, answer:[title, isCorrect]]
-        // },
-        // ]
     }
 
     function addLecture(Request $request) {
@@ -88,20 +64,6 @@ class TopicController extends Controller
             }
         }
         return ['code' => 201, 'message' => 'Создано'];
-
-        // 'title': '',
-        // 'topic_id': 1,
-        // "questions": [{
-		// 	id: uuidv4(),
-		// 	title: '',
-		// 	answers: [
-		// 		{
-		// 			id: uuidv4(),
-		// 			title: '',
-		// 			isCorrect: true,
-		// 		},
-		// 	],
-		// }]
     }
 
     function deleteLecture($lecture_id) {

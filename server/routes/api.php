@@ -20,23 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 	Route::post('/login', 'login');
-	Route::get('/logout', 'logout');
-	// For tests
-	Route::get('/add', 'add');
-	Route::get('/id', 'id');
 });
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-	Route::get('/getSubjects/{user_id}', 'getSubjects');
-	Route::get('/getUser/{user_id}', 'getUser');
+	Route::get('/getSubjects', 'getSubjects');
+	Route::get('/getUser', 'getUser');
 	Route::get('/getGroups/{subject_id}', 'getGroups');
 	Route::get('/getTopics/{subject_id}/{group_id}', 'getTopics');
 	Route::post('/addTopic', 'addTopic');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
-	Route::get('/getAll/{user_id}', 'getAll');
-	Route::get('/getOne/{id}', 'getOne');
+	Route::get('/getAll', 'getAll');
+	Route::get('/getOne/{id_project}', 'getOne');
 	Route::post('/addProject', 'addProject');
-	Route::put('/updateProject/{id}', 'updateProject');
+	Route::put('/updateProject/{id_project}', 'updateProject');
 	Route::delete('/deleteProject', 'deleteProject');
 });
 Route::controller(TopicController::class)->prefix('/topic')->group(function () {
@@ -45,7 +41,6 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::get('/getTest/{test_id}', 'getTest');
 	Route::post('/addLecture', 'addLecture');
 	Route::post('/addTest', 'addTest');
-	// Route::put('/updateTest/{test_id}', 'updateTest');
 	Route::put('/updateLecture/{lecture_id}', 'updateLecture');
 	Route::delete('/deleteTest/{test_id}', 'deleteTest');
 	Route::delete('/deleteLecture/{lecture_id}', 'deleteLecture');
@@ -72,5 +67,6 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 	Route::delete('/deleteSubject', 'deleteSubject');
 
 	Route::post('/addNews', 'addNews');
+	Route::put ('/updateNews', 'updateNews');
 	Route::delete('/deleteNews', 'deleteNews');
 });
