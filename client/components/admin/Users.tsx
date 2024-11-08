@@ -1,6 +1,12 @@
-import React from 'react'
+'use client'
+
+import Image from 'next/image'
+import React, { useRef } from 'react'
+
+import search from '/assets/search.png'
 
 const Users = () => {
+	const searchRef = useRef<HTMLInputElement>(null)
 	return (
 		<div>
 			{/* title div */}
@@ -10,7 +16,27 @@ const Users = () => {
 				</div>
 				<div className='flex'>
 					<div className='mr-[15px]'>Select</div>
-					<div>Search</div>
+					<div className='flex items-center bg-background w-[180px] px-[7px] py-[3px] rounded-[10px]'>
+						<div>
+							<Image
+								src={search}
+								onClick={() => {
+									searchRef.current!.focus()
+								}}
+								width={25}
+								height={25}
+								alt='search icon'
+							/>
+						</div>
+						<div className='w-full ml-[6px]'>
+							<input
+								ref={searchRef}
+								type='text'
+								placeholder='Поиск'
+								className='w-full bg-background text-[17px] font-regular focus:outline-none'
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 			{/* content */}
