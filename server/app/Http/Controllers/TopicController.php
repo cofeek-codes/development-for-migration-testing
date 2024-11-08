@@ -82,9 +82,9 @@ class TopicController extends Controller
     function addTest(Request $request) {
         $test = Test::create(['title' => $request->title, 'topic_id' => $request->topic_id]);
         foreach ($request->questions as $question) {
-            $questionCreate = Question::create(['title' => $question->title, 'test_id' => $test->id]);
-            foreach ($question->answers as $answer) {
-                Answer::create(['title' => $answer->title, 'correct' => $answer->isCorrect, 'question_id' => $questionCreate->id]);
+            $questionCreate = Question::create(['title' => $question['title'], 'test_id' => $test->id]);
+            foreach ($question['answers'] as $answer) {
+                Answer::create(['title' => $answer['title'], 'correct' => $answer['isCorrect'], 'question_id' => $questionCreate->id]);
             }
         }
         return ['code' => 201, 'message' => 'Создано'];

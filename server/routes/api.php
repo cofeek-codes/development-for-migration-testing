@@ -45,7 +45,6 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::get('/getTest/{test_id}', 'getTest');
 	Route::post('/addLecture', 'addLecture');
 	Route::post('/addTest', 'addTest');
-	// Route::put('/updateTest/{test_id}', 'updateTest');
 	Route::put('/updateLecture/{lecture_id}', 'updateLecture');
 	Route::delete('/deleteTest/{test_id}', 'deleteTest');
 	Route::delete('/deleteLecture/{lecture_id}', 'deleteLecture');
