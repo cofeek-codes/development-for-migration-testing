@@ -27,6 +27,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
 	Route::get('/getGroups/{subject_id}', 'getGroups');
 	Route::get('/getTopics/{subject_id}/{group_id}', 'getTopics');
 	Route::post('/addTopic', 'addTopic');
+	Route::get('/getNews', 'getNews');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
 	Route::get('/getAll', 'getAll');
@@ -51,11 +52,11 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 
 Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 	Route::get('/getUsers', 'getUsers');
-	Route::get('/getUser/{id}', 'getUser');
-	Route::get('/getGroups', 'getGroup');
-	Route::get('/getGroup', 'getGroup');
-	Route::get('/getSubjects', 'getSubject');
-	Route::get('/getUsers', 'getUsers');
+	Route::get('/getUser/{id_user}', 'getUser');
+	Route::get('/getGroups', 'getGroups');
+	Route::get('/getGroup/{id_group}', 'getGroup');
+	Route::get('/getSubjects', 'getSubjects');
+	Route::get('/getSubject/{id_subject}', 'getSubject');
 	Route::put('/updateUser', 'updateUser');
 	Route::put('/updateGroup', 'updateGroup');
 	Route::put('/updateSubject', 'updateSubject');
@@ -66,6 +67,8 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 	Route::delete('/deleteGroup', 'deleteGroup');
 	Route::delete('/deleteSubject', 'deleteSubject');
 
+	Route::get('/getNews', 'getNews');
+	Route::get('/getNews/{id_news}', 'getNewsId');
 	Route::post('/addNews', 'addNews');
 	Route::put ('/updateNews', 'updateNews');
 	Route::delete('/deleteNews', 'deleteNews');

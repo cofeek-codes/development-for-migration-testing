@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Group_Subject;
+use App\Models\News;
 use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\User;
@@ -33,4 +34,7 @@ class UserController extends Controller
         return ['code' => '200', 'message' => Topic::create($request->all())];
     }
 
+    function getNews() {
+        return ['code' => 200, 'message' => News::all()];
+    }
 }
