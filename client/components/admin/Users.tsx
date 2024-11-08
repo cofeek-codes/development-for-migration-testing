@@ -2,10 +2,47 @@
 
 import Image from 'next/image'
 import React, { useRef } from 'react'
+import Select, { StylesConfig } from 'react-select'
 
 import search from '/assets/search.png'
 
 const Users = () => {
+	const selectStyles: StylesConfig = {
+		control: styles => ({
+			...styles,
+			backgroundColor: '#0a0019',
+			border: 'none',
+			fontSize: '15px',
+		}),
+
+		container: styles => ({
+			...styles,
+			backgroundColor: '#0a0019',
+			border: 'none',
+		}),
+
+		option: styles => ({
+			...styles,
+			backgroundColor: '#0a0019',
+			border: 'none',
+		}),
+
+		menu: styles => ({
+			...styles,
+			backgroundColor: '#0a0019',
+			border: 'none',
+			fontSize: '15px',
+		}),
+
+		placeholder: styles => ({
+			...styles,
+			fontSize: '15px',
+		}),
+	}
+	const options = [
+		{ value: 'teacher', label: 'Преподаватель' },
+		{ value: 'student', label: 'Студент' },
+	]
 	const searchRef = useRef<HTMLInputElement>(null)
 	return (
 		<div>
@@ -15,7 +52,15 @@ const Users = () => {
 					<div>Пользователи</div>
 				</div>
 				<div className='flex'>
-					<div className='mr-[15px]'>Select</div>
+					<div className='mr-[15px] bg-background w-[180px] px-[7px] py-[3px] rounded-[10px]'>
+						{/* react select here */}
+						<Select
+							options={options}
+							defaultValue={options[0]}
+							styles={selectStyles}
+						/>
+					</div>
+
 					<div className='flex items-center bg-background w-[180px] px-[7px] py-[3px] rounded-[10px]'>
 						<div>
 							<Image
