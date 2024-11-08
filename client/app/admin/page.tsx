@@ -25,7 +25,7 @@ const Admin = () => {
 				</div>
 				<div className='flex items-center'>
 					{/* left */}
-					<div className='p-[25px] w-[320px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
+					<div className='p-[25px] w-[250px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
 						<div className='*:mb-[2px] last:mb-0'>
 							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
 								<button
@@ -69,7 +69,7 @@ const Admin = () => {
 					</div>
 
 					{/* right */}
-					<div className='w-[685px] relative p-[25px]  h-[600px] bg-purple rounded-[22px]'>
+					<div className='w-[755px] relative p-[25px] h-[600px] bg-purple rounded-[22px]'>
 						{tabs[selectedTab]}
 					</div>
 				</div>
