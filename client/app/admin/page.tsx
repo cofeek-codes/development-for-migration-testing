@@ -50,7 +50,13 @@ const Admin = () => {
 								</button>
 							</div>
 							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
-								<button className='p-[10px] text-[15px]'>
+								<button
+									onClick={e => {
+										e.preventDefault()
+										setSelectedTab(2)
+									}}
+									className='p-[10px] text-[15px]'
+								>
 									Учебные предметы
 								</button>
 							</div>
