@@ -15,11 +15,11 @@ use Mockery\Matcher\Subset;
 class UserController extends Controller
 {
     function getUser(Request $request) {
-        return ['code' => '200', 'message' => User::find($request->cookie('user_id'))->get(['name', 'surname', 'patronymic'])];
+        return ['code' => '200', 'message' => User::find($request->header('user_id'))->get(['name', 'surname', 'patronymic'])];
     }
 
     function getGroups(Request $request) {
-        $subjects = Subject::where('user_id', $request->cookie('user_id'))->groupBy('groupId')->get(['group_id']);
+        $subjects = Subject::where('user_id', $request->header('user_id'))->groupBy('groupId')->get(['group_id']);
         $groups = [];
         foreach ($subjects as $subject) {
             array_push($groups, Group::where('id', $subject->group_id)->get());
