@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             GroupSeeder::class,
             SubjectSeeder::class,
-            GroupSubjectSeeder::class,
             TopicSeeder::class,
             RoleSeeder::class,
             LectureSeeder::class,
