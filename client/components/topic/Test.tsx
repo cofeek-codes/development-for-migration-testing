@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Question from './Question'
-import { useTimer } from 'react-timer-hook'
+import { useStopwatch, useTimer } from 'react-timer-hook'
 import { ITest } from '@/types/models/ITest'
 import { AxiosError } from 'axios'
 import axiosInstance from '@/utils/axiosInstance'
@@ -26,29 +26,15 @@ const Test = (props: Props) => {
 			})
 	}, [])
 
-	const expiryTimestamp = new Date()
-	expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 600)
-	const {
-		totalSeconds,
-		seconds,
-		minutes,
-		hours,
-		days,
-		isRunning,
-		start,
-		pause,
-		resume,
-		restart,
-	} = useTimer({
-		expiryTimestamp,
-		onExpire: () => console.warn('onExpire called'),
-	})
+	const { seconds, minutes } = useStopwatch({ autoStart: true })
 	return (
 		<div>
 			{/* title */}
 			<div className='font-bold text-[23px] mb-[15px]'>{props.test.title}</div>
 			{/* question 1 */}
-			{testData?.questions?.map((q: IQuestion) => <Question question={q} />)}
+			{testData?.questions?.map((q: IQuestion) => (
+				<Question key={q.id} question={q} />
+			))}
 			<div className='absolute left-[25px] bottom-[25px] flex justify-center items-center rounded-[22px] text-[23px] font-bold'>
 				<span>{minutes}:</span>
 				<span>{seconds}</span>

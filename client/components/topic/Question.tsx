@@ -17,7 +17,11 @@ const Question = (props: Props) => {
 				{props.question.answers.map((a: IAnswer, idx: number) => (
 					<label key={a.id} className='container'>
 						{a.title}
-						<input type='checkbox' defaultChecked={idx === 1} />
+						<input
+							type='radio'
+							name={a.question_id.toString()}
+							defaultChecked={idx === 0}
+						/>
 						<span className='checkmark'></span>
 					</label>
 				))}
