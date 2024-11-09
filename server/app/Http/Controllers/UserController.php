@@ -19,11 +19,16 @@ class UserController extends Controller
     }
 
     function getGroups(Request $request) {
-        return ['code' => '200', 'message' => Group::where('user_id', $request->cookie('user_id'))->get()];
+        $subjects = Subject::where('user_id', $request->cookie('user_id'))->groupBy('groupId')->get(['group_id']);
+        $groups = [];
+        foreach ($subjects as $subject) {
+            array_push($groups, Group::where('id', $subject->group_id)->get());
+        }
+        return ['code' => '200', 'message' => $groups];
     }
 
     function getSubjects($group_id) {
-        return ['code' => '200', 'message' => Subject::where('group_id', $group_id)->get];
+        return ['code' => '200', 'message' => Subject::where('group_id', $group_id)->get()];
     }
 
 
