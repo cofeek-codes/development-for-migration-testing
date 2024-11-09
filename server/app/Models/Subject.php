@@ -11,8 +11,13 @@ class Subject extends Model
 {
     use HasFactory;
 
-    public function groups(): BelongsToMany
-    {
+    protected $fillable = [
+        'name',
+        'user_id',
+        'group_id',
+    ];
+
+    public function groups() : BelongsToMany {
         return $this->belongsToMany(Group::class);
     }
 
