@@ -1,22 +1,69 @@
 'use client'
 
 import Image from 'next/image'
-import React, { ReactNode, useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import arrow from '/assets/arrow.png'
+import { AxiosError } from 'axios'
+import axiosInstance from '@/utils/axiosInstance'
+import { useParams, useRouter } from 'next/navigation'
 import Lection from '@/components/topic/Lection'
 import Test from '@/components/topic/Test'
-import { useRouter } from 'next/navigation'
 
 const Topic = () => {
-	const router = useRouter()
-	const tabs = [
-		<Lection title='lection 1' isTest={false} lectionId={1} />,
-		<Lection title='lection 2' isTest={false} lectionId={2} />,
-		<Test title='test 1' isTest={true} testId={1} />,
-		<Test title='test 2' isTest={true} testId={2} />,
-	]
+	const [subject, setSubject] = useState<any>(null)
+	const [error, setError] = useState<AxiosError | null>(null)
+	const [tabs, setTabs] = useState<React.JSX.Element[]>([])
 
+	const router = useRouter()
+	const params = useParams()
+
+	// const tabs = [
+	// 	<Lection title='lection 1' isTest={false} lectionId={1} />,
+	// 	<Lection title='lection 2' isTest={false} lectionId={2} />,
+	// 	<Test title='test 1' isTest={true} testId={1} />,
+	// 	<Test title='test 2' isTest={true} testId={2} />,
+	// ]
+
+	useEffect(() => {
+		// getMaterials
+
+		axiosInstance
+			.get(`/topic/getMaterials/${params.id}`)
+			.then(res => {
+				setSubject(res.data.message)
+				console.log(res.data.message)
+
+				res.data.message.lectures.forEach((lecture: any) => {
+					setTabs(tabs => [
+						...tabs,
+						<Lection
+							lectionId={lecture.id}
+							isTest={false}
+							title={lecture.title}
+						/>,
+					])
+				})
+				res.data.message.tests.forEach((test: any) => {
+					setTabs(tabs => [
+						...tabs,
+						<Test testId={test.id} isTest={true} title={test.title} />,
+					])
+				})
+			})
+			.catch((err: AxiosError) => {
+				setError(err)
+			})
+		// getSubject
+		axiosInstance
+			.get(`/user/getSubject/${params.id}`)
+			.then(res => {
+				setSubject(res.data.message)
+				console.log(res.data.message)
+			})
+			.catch((err: AxiosError) => {
+				setError(err)
+			})
+	}, [])
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 	return (
 		<div className='h-screen w-[1080px] mx-auto'>
@@ -32,14 +79,17 @@ const Topic = () => {
 					>
 						<Image src={arrow} width={26} height={32} alt='go back arrow' />
 					</div>
-					<div className='text-[35px]'>Понятие логарифма</div>
+					<div className='text-[35px]'>{subject && subject.name}</div>
 				</div>
 				<div className='flex items-center'>
 					{/* left */}
 					<div className='p-[25px] w-[320px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
 						<div className='*:mb-[2px] last:mb-0'>
 							{tabs.map((tab: React.JSX.Element, idx: number) => (
-								<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
+								<div
+									key={idx}
+									className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'
+								>
 									<button
 										className='p-[10px] text-left text-[15px] w-full'
 										onClick={e => {
