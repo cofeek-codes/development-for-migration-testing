@@ -3,14 +3,14 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+import Answers from '@/components/topic/Answers'
 import Lection from '@/components/topic/Lection'
-import TestEditor from '@/components/topic/TestEditor'
 import Link from 'next/link'
 import arrow from '/assets/arrow.png'
 
 const Topic = () => {
 	const [isAddOpen, setAddOpen] = useState(false)
-	const tabs = [<Lection />, <TestEditor />]
+	const tabs = [<Lection />, <Answers />]
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 	return (
 		<div className='h-screen w-[1080px] mx-auto'>
@@ -28,9 +28,10 @@ const Topic = () => {
 					{/* left */}
 					<div className='flex flex-col relative mr-[25px]'>
 						<div className='p-[25px] w-[320px] h-[725px] bg-purple rounded-[22px_22px_0px_0px]'>
-							<div className='*:mb-[5px] last:mb-0'>
-								<div>
+							<div className='*:mb-[5px]'>
+								<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
 									<button
+										className='p-[10px] text-[15px]'
 										onClick={e => {
 											e.preventDefault()
 											setSelectedTab(0)
@@ -39,8 +40,9 @@ const Topic = () => {
 										1. Понятие логарифма
 									</button>
 								</div>
-								<div>
+								<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
 									<button
+										className='p-[10px] text-[15px]'
 										onClick={e => {
 											e.preventDefault()
 											setSelectedTab(1)
@@ -48,9 +50,6 @@ const Topic = () => {
 									>
 										2. Тест: Логарирфмы
 									</button>
-								</div>
-								<div>
-									<button>3. Домашнее задание</button>
 								</div>
 							</div>
 						</div>

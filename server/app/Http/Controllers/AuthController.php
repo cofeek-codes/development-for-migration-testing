@@ -12,7 +12,7 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('login', 'password'), $request->has('remember'))) {
             return ['code'=>401, 'message' => 'Неправильный пароль'];
         } else {
-            return response(['code'=>200, 'message' => 'logged in'])->cookie(cookie('user_id', Auth::id(), 172800))->cookie(cookie('role', Auth::user()->role_id, 172800));
+            return response(['code'=>200, 'message' => 'logged in', 'user_id' => Auth::id(), 'role' => Auth::user()->role_id]);
         }
     }
 

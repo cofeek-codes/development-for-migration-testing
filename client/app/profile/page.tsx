@@ -1,8 +1,6 @@
-import Additional from '@/components/profile/Additional'
 import News from '@/components/profile/News'
-import Subjects from '@/components/profile/Subjects'
 import Teacher from '@/components/profile/Teacher'
-import Teachers from '@/components/profile/Teachers'
+import Topics from '@/components/profile/Topics'
 
 const Profile = () => {
 	return (
@@ -11,15 +9,13 @@ const Profile = () => {
 			{/* main div */}
 			<div className='my-[25px] flex gap-[25px]'>
 				{/* left div */}
-				<div className='w-full flex justify-center flex-col'>
+				<div className='w-[319px] flex justify-start flex-col'>
 					{/* @TODO: make a transition animation  */}
-					<Subjects />
-					<Additional />
+					<Topics />
 				</div>
 				{/* right div */}
 				<div className='w-full flex justify-center flex-col'>
 					<News />
-					<Teachers />
 				</div>
 			</div>
 		</div>
