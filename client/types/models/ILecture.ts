@@ -1,4 +1,4 @@
-export interface ILection {
+export interface ILecture {
 	id: number
 	title: string
 	content: string

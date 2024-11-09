@@ -8,8 +8,8 @@ import axiosInstance from '@/utils/axiosInstance'
 import { useParams, useRouter } from 'next/navigation'
 import Lection from '@/components/topic/Lection'
 import Test from '@/components/topic/Test'
-import { ILection as ILecture } from '@/types/models/ILection'
 import { ITest } from '@/types/models/ITest'
+import { ILecture } from '@/types/models/ILecture'
 
 const Topic = () => {
 	const [subject, setSubject] = useState<any>(null)

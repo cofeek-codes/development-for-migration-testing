@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Question from './Question'
 import { useTimer } from 'react-timer-hook'
 import { ITest } from '@/types/models/ITest'
+import { AxiosError } from 'axios'
+import axiosInstance from '@/utils/axiosInstance'
+import { IQuestion } from '@/types/models/IQuestion'
 
 type Props = {
 	test: ITest
 	isTest: boolean
 }
 const Test = (props: Props) => {
+	const [testData, setTestData] = useState<any>(null)
+	const [error, setError] = useState<AxiosError | null>(null)
+
+	useEffect(() => {
+		axiosInstance
+			.get(`/topic/getTest/${props.test.id}`)
+			.then(res => {
+				setTestData(res.data.message)
+				console.log(res.data.message)
+			})
+			.catch(err => {
+				setError(err)
+			})
+	}, [])
+
 	const expiryTimestamp = new Date()
 	expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 600)
 	const {
@@ -30,8 +48,7 @@ const Test = (props: Props) => {
 			{/* title */}
 			<div className='font-bold text-[23px] mb-[15px]'>{props.test.title}</div>
 			{/* question 1 */}
-			<Question />
-			<Question />
+			{testData?.questions?.map((q: IQuestion) => <Question question={q} />)}
 			<div className='absolute left-[25px] bottom-[25px] flex justify-center items-center rounded-[22px] text-[23px] font-bold'>
 				<span>{minutes}:</span>
 				<span>{seconds}</span>
