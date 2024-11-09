@@ -29,6 +29,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::get('/getSubjects/', 'getSubjects');
     Route::get('/getUser/', 'getUser');
     Route::get('/getTopics/{subject_id}', 'getTopics');
+    Route::get('/getNews/', 'getNews');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
     Route::get('/getAll/{user_id}', 'getAll');
