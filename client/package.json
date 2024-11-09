@@ -16,6 +16,7 @@
     "react-dom": "^18",
     "react-select": "^5.8.2",
     "react-timer-hook": "^3.0.8",
+    "react-toastify": "^10.0.6",
     "sass": "^1.80.3",
     "sharp": "^0.33.5"
   },

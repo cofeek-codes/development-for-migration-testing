@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Cookies from 'js-cookie'
 import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
+import { Bounce, toast, ToastContainer } from 'react-toastify'
 
 type FormData = {
 	login: string
@@ -27,7 +28,17 @@ const LoginForm = () => {
 			.then(res => {
 				if (res.data.code != 200) {
 					setError(res)
-					alert(res.data.message)
+					toast.error(res.data.message, {
+						position: 'bottom-center',
+						autoClose: 5000,
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: 'dark',
+						transition: Bounce,
+					})
 				} else {
 					console.log(res)
 					console.log(Cookies.get())
@@ -86,6 +97,7 @@ const LoginForm = () => {
 					Вход
 				</button>
 			</form>
+			<ToastContainer />
 		</>
 	)
 }
