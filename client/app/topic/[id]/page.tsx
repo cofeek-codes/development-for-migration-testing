@@ -8,6 +8,8 @@ import axiosInstance from '@/utils/axiosInstance'
 import { useParams, useRouter } from 'next/navigation'
 import Lection from '@/components/topic/Lection'
 import Test from '@/components/topic/Test'
+import { ILection as ILecture } from '@/types/models/ILection'
+import { ITest } from '@/types/models/ITest'
 
 const Topic = () => {
 	const [subject, setSubject] = useState<any>(null)
@@ -33,21 +35,14 @@ const Topic = () => {
 				setSubject(res.data.message)
 				console.log(res.data.message)
 
-				res.data.message.lectures.forEach((lecture: any) => {
+				res.data.message.lectures.forEach((lecture: ILecture) => {
 					setTabs(tabs => [
 						...tabs,
-						<Lection
-							lectionId={lecture.id}
-							isTest={false}
-							title={lecture.title}
-						/>,
+						<Lection lecture={lecture} isTest={false} />,
 					])
 				})
-				res.data.message.tests.forEach((test: any) => {
-					setTabs(tabs => [
-						...tabs,
-						<Test testId={test.id} isTest={true} title={test.title} />,
-					])
+				res.data.message.tests.forEach((test: ITest) => {
+					setTabs(tabs => [...tabs, <Test test={test} isTest={true} />])
 				})
 			})
 			.catch((err: AxiosError) => {
@@ -98,8 +93,8 @@ const Topic = () => {
 										}}
 									>
 										{!tab.props.isTest
-											? tab.props.title
-											: 'Тест: ' + tab.props.title}
+											? tab.props.lecture.title
+											: 'Тест: ' + tab.props.test.title}
 									</button>
 								</div>
 							))}

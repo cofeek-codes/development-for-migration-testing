@@ -1,11 +1,11 @@
 import React from 'react'
 import Question from './Question'
 import { useTimer } from 'react-timer-hook'
+import { ITest } from '@/types/models/ITest'
 
 type Props = {
-	testId: number
+	test: ITest
 	isTest: boolean
-	title: string
 }
 const Test = (props: Props) => {
 	const expiryTimestamp = new Date()
@@ -28,7 +28,7 @@ const Test = (props: Props) => {
 	return (
 		<div>
 			{/* title */}
-			<div className='font-bold text-[23px] mb-[15px]'>Тест: Логарифмы</div>
+			<div className='font-bold text-[23px] mb-[15px]'>{props.test.title}</div>
 			{/* question 1 */}
 			<Question />
 			<Question />
