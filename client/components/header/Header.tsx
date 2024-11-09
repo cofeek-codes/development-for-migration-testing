@@ -2,12 +2,20 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
 import logo from '/assets/logo.png'
 import exit from '/assets/exit.svg'
 
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+
 const Header = () => {
-	const searchRef = useRef<HTMLInputElement>(null)
+	const router = useRouter()
+	function handleLogout(e: any) {
+		e.preventDefault()
+		Cookies.remove('user_id')
+		Cookies.remove('role')
+		router.push('/auth')
+	}
 
 	return (
 		<header className='flex w-full justify-between bg-purple items-center left-0'>
@@ -17,7 +25,7 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className='flex items-center'>
-				<div className='header__settings mr-[25px]'>
+				<div onClick={handleLogout} className='header__settings mr-[25px]'>
 					<Image src={exit} width={47} height={50} alt='exit' />
 				</div>
 			</div>
