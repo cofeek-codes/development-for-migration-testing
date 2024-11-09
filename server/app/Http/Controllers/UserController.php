@@ -25,6 +25,12 @@ class UserController extends Controller
         return ['code' => '200', 'message' => Subject::where('group_id', User::find($request->header('user_id'))->group_id)->get()];
     }
 
+    function getSubject($subject_id)
+    {
+        return ['code' => '200', 'message' => Subject::find($subject_id)];
+    }
+
+
     function getGroup(Request $request)
     {
         return ['code' => 200, "message" => Group::where('id', User::find($request->header('user_id'))->group_id)->get()];
