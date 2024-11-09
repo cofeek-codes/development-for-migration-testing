@@ -25,20 +25,10 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
 	response => {
-		// Check for Set-Cookie headers in the response
-		const setCookieHeaders = response.headers['set-cookie']
-
-		if (setCookieHeaders) {
-			setCookieHeaders.forEach(cookieString => {
-				const [cookieName, cookieValue] = cookieString.split(';')[0].split('=')
-
-				if (cookieName === 'user_id' || cookieName === 'role') {
-					// Set the cookie in the browser
-					Cookies.set(cookieName, cookieValue, { path: '/' })
-				}
-			})
+		if (response.data.user_id && response.data.role) {
+			Cookies.set('user_id', response.data.user_id)
+			Cookies.set('role', response.data.role)
 		}
-
 		return response
 	},
 	error => Promise.reject(error),
