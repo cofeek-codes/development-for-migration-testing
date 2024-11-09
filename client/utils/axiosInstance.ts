@@ -13,8 +13,8 @@ axiosInstance.interceptors.request.use(
 		const role = Cookies.get('role')
 
 		if (userId && role) {
-			config.headers['X-User-ID'] = userId
-			config.headers['X-Role'] = role
+			config.headers['user_id'] = userId
+			config.headers['role'] = role
 		}
 		return config
 	},
