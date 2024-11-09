@@ -67,8 +67,8 @@ const Subject = (props: Props) => {
 					{!topics && 'Загрузка...'}
 					{topics &&
 						topics.map((t: any) => (
-							<Link href={`/topic/${t.id}`}>
-								<div key={t.id}>
+							<Link key={t.id} href={`/topic/${t.id}`}>
+								<div>
 									<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
 										{t.title}
 									</p>

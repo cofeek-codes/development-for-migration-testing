@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import Question from './Question'
 import { useStopwatch } from 'react-timer-hook'
@@ -6,21 +8,35 @@ import { AxiosError } from 'axios'
 import axiosInstance from '@/utils/axiosInstance'
 import { IQuestion } from '@/types/models/IQuestion'
 import { TQuestionData } from '@/types/TQuestionData'
+import { useRouter } from 'next/navigation'
 
 type Props = {
 	test: ITest
 	isTest: boolean
 }
 const Test = (props: Props) => {
+	const router = useRouter()
 	const [testData, setTestData] = useState<any>(null)
+	const [mark, setMark] = useState<any>(null)
 	const [error, setError] = useState<AxiosError | null>(null)
 	const [questionData, setQuestionData] = useState<TQuestionData[]>([])
 
 	useEffect(() => {
+		// getTest
 		axiosInstance
 			.get(`/topic/getTest/${props.test.id}`)
 			.then(res => {
 				setTestData(res.data.message)
+				console.log(res.data.message)
+			})
+			.catch(err => {
+				setError(err)
+			})
+		// getMark
+		axiosInstance
+			.get(`/topic/getMark/${props.test.id}`)
+			.then(res => {
+				setMark(res.data.message)
 				console.log(res.data.message)
 			})
 			.catch(err => {
@@ -45,6 +61,7 @@ const Test = (props: Props) => {
 			.post('/topic/sendTest', body)
 			.then(res => {
 				console.log(res.data.message)
+				window.location.reload()
 			})
 			.catch(err => {
 				setError(err)
@@ -52,20 +69,33 @@ const Test = (props: Props) => {
 			})
 	}
 
-	const { seconds, minutes } = useStopwatch({ autoStart: true })
+	const { seconds, minutes } = useStopwatch({
+		autoStart: typeof mark != 'number',
+	})
 	return (
 		<div>
 			{/* title */}
 			<div className='font-bold text-[23px] mb-[15px]'>{props.test.title}</div>
 			{/* question 1 */}
-			{testData?.questions?.map((q: IQuestion) => (
-				<Question
-					setQuestionData={setQuestionData}
-					questionData={questionData}
-					key={q.id}
-					question={q}
-				/>
-			))}
+			{!mark &&
+				testData?.questions?.map((q: IQuestion) => (
+					<Question
+						setQuestionData={setQuestionData}
+						questionData={questionData}
+						key={q.id}
+						question={q}
+					/>
+				))}
+			{mark && (
+				<>
+					<div className='flex justify-center mb-[15px] text-2xl w-full h-full items-center text-white'>
+						Тест Проиден
+					</div>
+					<div className='flex justify-center items-center text-5xl text-white w-full h-full'>
+						{mark}
+					</div>
+				</>
+			)}
 			<div className='absolute left-[25px] bottom-[25px] flex justify-center items-center rounded-[22px] text-[23px] font-bold'>
 				<span>{minutes}:</span>
 				<span>{seconds}</span>
