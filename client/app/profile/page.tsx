@@ -29,12 +29,10 @@ const Profile = () => {
 							setIsSubjectOpen={setIsSubjectOpen}
 						/>
 					)}
-					<Additional />
 				</div>
 				{/* right div */}
 				<div className='w-full flex justify-center flex-col'>
 					<News />
-					<Teachers />
 				</div>
 			</div>
 		</div>

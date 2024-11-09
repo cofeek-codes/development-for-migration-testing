@@ -47,7 +47,7 @@ const Subject = (props: Props) => {
 			<div className='flex w-full justify-center font-regular mb-[5px] text-[30px]'>
 				Основное
 			</div>
-			<div className='flex flex-col rounded-[22px] justify-start items-center bg-purple p-[25px] min-h-[447px]'>
+			<div className='flex flex-col rounded-[22px] justify-start items-center bg-purple p-[25px] min-h-[600px]'>
 				{/* subject title  */}
 				<div className='flex justify-start items-center w-full'>
 					<div

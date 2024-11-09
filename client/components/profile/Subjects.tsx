@@ -32,7 +32,7 @@ const Subjects = (props: Props) => {
 			<div className='flex w-full justify-center font-regular mb-[5px] text-[30px]'>
 				Основное
 			</div>
-			<div className='flex flex-col rounded-[22px] justify-start bg-purple p-[25px] h-[447px] overflow-scroll'>
+			<div className='flex flex-col rounded-[22px] justify-start bg-purple p-[25px] h-[600px] overflow-scroll'>
 				{!data && 'Загрузка...'}
 				{data &&
 					data.map((s: ISubject) => (

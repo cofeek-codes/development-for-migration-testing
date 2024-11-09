@@ -9,7 +9,7 @@ const News = () => {
 				Новости
 			</div>
 			{/* @TODO: fix scroller styles */}
-			<div className='flex flex-col rounded-[22px] px-[25px] justify-start items-start min-start h-[447px] bg-purple'>
+			<div className='flex flex-col rounded-[22px] px-[25px] justify-start items-start min-start h-[600px] bg-purple'>
 				{/* news */}
 				<div className='w-full overflow-y-auto my-[25px]'>
 					<Post />
