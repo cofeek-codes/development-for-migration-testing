@@ -12,7 +12,7 @@ class ProjectController extends Controller
     function getAll(Request $request)
     {
         // return User::find(Auth::id())->projects;
-        return User::find($request->cookie('user_id'))->projects;
+        return User::find($request->header('user_id'))->projects;
     }
 
     function addProject(Request $request)

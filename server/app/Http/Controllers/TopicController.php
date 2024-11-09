@@ -58,7 +58,7 @@ class TopicController extends Controller
 
         foreach ($request->questions as $question) {
             Student_answer::create([
-                'user_id' => $request->cookie('user_id'),
+                'user_id' => $request->header('user_id'),
                 'question_id' => $question['id'],
                 'answer_id' => $question['answer_id']
             ]);
@@ -96,7 +96,7 @@ class TopicController extends Controller
             'mark' => $mark,
             'date' => (new DateTime())->format('d.m.Y'),
             'test_id' => $request->test_id,
-            'user_id' => $request->cookie('user_id'),
+            'user_id' => $request->header('user_id'),
             'time' => $request->time
 
         ]);
@@ -106,7 +106,7 @@ class TopicController extends Controller
 
     function getMark($test_id, Request $request)
     {
-        $mark = Mark::where('test_id', $test_id)->where('user_id', $request->cookie('user_id'))->get()[0]->mark;
+        $mark = Mark::where('test_id', $test_id)->where('user_id', $request->header('user_id'))->get()[0]->mark;
         return ['code' => 201, 'message' => $mark];
     }
 }
