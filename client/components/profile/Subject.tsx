@@ -8,6 +8,7 @@ import axiosInstance from '@/utils/axiosInstance'
 
 type Props = {
 	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
+	currentSubjectId: number
 }
 
 const Subject = (props: Props) => {
@@ -15,8 +16,23 @@ const Subject = (props: Props) => {
 	const [topics, setTopics] = useState<any>(null)
 	const [error, setError] = useState<AxiosError | null>(null)
 	useEffect(() => {
+		// getSubject
 		axiosInstance
-			.get('/user/getTopics/1')
+			.get(`/user/getSubject/${props.currentSubjectId}`)
+			.then(res => {
+				console.log('currentSubjectId')
+				console.log(props.currentSubjectId)
+
+				console.log('subject')
+				console.log(res.data.message)
+				setSubject(res.data.message)
+			})
+			.catch((err: AxiosError) => {
+				setError(err)
+			})
+		// getTopics
+		axiosInstance
+			.get(`/user/getTopics/${props.currentSubjectId}`)
 			.then(res => {
 				setTopics(res.data.message)
 				console.log(res.data.message)
@@ -43,18 +59,20 @@ const Subject = (props: Props) => {
 					>
 						<Image src={arrow} width={26} height={32} alt='go back arrow' />
 					</div>
-					<div className='text-[22px]'>Математика</div>
+					<div className='text-[22px]'>{subject && subject.name}</div>
 				</div>
 				{/* themes */}
 				<div className='flex justity-start w-full flex-col mt-[10px]'>
-					{topics.map((t: any) => (
-						<div>
-							<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
-								{t.title}
-							</p>
-							<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
-						</div>
-					))}
+					{!topics && 'Загрузка...'}
+					{topics &&
+						topics.map((t: any) => (
+							<div key={t.id}>
+								<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
+									{t.title}
+								</p>
+								<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
+							</div>
+						))}
 				</div>
 			</div>
 		</div>

@@ -10,6 +10,7 @@ import { useState } from 'react'
 
 const Profile = () => {
 	const [isSubjectOpen, setIsSubjectOpen] = useState<boolean>(false)
+	const [currentSubjectId, setCurrentSubjectId] = useState<number>(0)
 	return (
 		<div className='w-[1080px] h-full px-[30px] mx-auto'>
 			<Student />
@@ -18,9 +19,15 @@ const Profile = () => {
 				{/* left div */}
 				<div className='w-full flex justify-center flex-col'>
 					{isSubjectOpen ? (
-						<Subject setIsSubjectOpen={setIsSubjectOpen} />
+						<Subject
+							currentSubjectId={currentSubjectId}
+							setIsSubjectOpen={setIsSubjectOpen}
+						/>
 					) : (
-						<Subjects setIsSubjectOpen={setIsSubjectOpen} />
+						<Subjects
+							setCurrentSubjectId={setCurrentSubjectId}
+							setIsSubjectOpen={setIsSubjectOpen}
+						/>
 					)}
 					<Additional />
 				</div>

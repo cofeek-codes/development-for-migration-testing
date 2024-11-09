@@ -9,6 +9,7 @@ import { ISubject } from '@/types/models/ISubject'
 
 type Props = {
 	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
+	setCurrentSubjectId: Dispatch<SetStateAction<number>>
 }
 
 const Subjects = (props: Props) => {
@@ -40,6 +41,7 @@ const Subjects = (props: Props) => {
 							onClick={e => {
 								e.preventDefault()
 								props.setIsSubjectOpen(true)
+								props.setCurrentSubjectId(s.id)
 							}}
 						>
 							<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
