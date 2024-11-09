@@ -48,6 +48,7 @@ const Student = () => {
 				{/* name and portfolio */}
 				<div>
 					<div className='text-[27px] mb-[5px]'>
+						{!data && 'Загрузка...'}
 						{data?.name} {data?.surname} {data?.patronymic}
 					</div>
 					{/* @TODO: ask how to get group */}
