@@ -18,16 +18,17 @@ class UserController extends Controller
         return ['code' => '200', 'message' => User::find($request->cookie('user_id'))->get(['name', 'surname', 'patronymic'])];
     }
 
-    function getSubjects(Request $request) {
-        return ['code' => '200', 'message' => User::find($request->cookie('user_id'))->subjects];
+    function getGroups(Request $request) {
+        return ['code' => '200', 'message' => Group::where('user_id', $request->cookie('user_id'))->get()];
     }
 
-    function getGroups($subject_id) {
-        return ['code' => '200', 'message' => Subject::find($subject_id)->groups];
+    function getSubjects($group_id) {
+        return ['code' => '200', 'message' => Subject::where('group_id', $group_id)->get];
     }
 
-    function getTopics($group_id, $subject_id) {
-        return ['code' => '200', 'message' => Topic::where('group_id', '=', $group_id)->where('subject_id', '=', $subject_id)->get()];
+
+    function getTopics($subject_id) {
+        return ['code' => '200', 'message' => Topic::where('subject_id', '=', $subject_id)->get()];
     }
 
     function addTopic(Request $request) {

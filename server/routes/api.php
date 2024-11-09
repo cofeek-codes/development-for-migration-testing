@@ -22,10 +22,10 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 	Route::post('/login', 'login');
 });
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-	Route::get('/getSubjects', 'getSubjects');
 	Route::get('/getUser', 'getUser');
-	Route::get('/getGroups/{subject_id}', 'getGroups');
-	Route::get('/getTopics/{subject_id}/{group_id}', 'getTopics');
+	Route::get('/getGroups', 'getGroups');
+	Route::get('/getSubjects/{group_id}', 'getSubjects');
+	Route::get('/getTopics/{subject_id}', 'getTopics');
 	Route::post('/addTopic', 'addTopic');
 	Route::get('/getNews', 'getNews');
 });
