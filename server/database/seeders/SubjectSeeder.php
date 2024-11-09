@@ -16,6 +16,7 @@ class SubjectSeeder extends Seeder
         DB::table('subjects')->insert([
             'name' => fake()->name,
             'user_id' => 1,
+            'group_id' => 1,
         ]);
     }
 }

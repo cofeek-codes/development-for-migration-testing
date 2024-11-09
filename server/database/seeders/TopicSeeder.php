@@ -15,7 +15,6 @@ class TopicSeeder extends Seeder
     {
         DB::table('topics')->insert([
             'title' => fake()->name, 
-            'group_id' => 1,
             'subject_id' => 1,
         ]);
     }
