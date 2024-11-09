@@ -5,6 +5,7 @@ import { AxiosError } from 'axios'
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Loading from '../Loading'
+import { ISubject } from '@/types/models/ISubject'
 
 type Props = {
 	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
@@ -33,7 +34,7 @@ const Subjects = (props: Props) => {
 			<div className='flex flex-col rounded-[22px] justify-start bg-purple p-[25px] h-[447px] overflow-scroll'>
 				{!data && 'Загрузка...'}
 				{data &&
-					data.map((s: any) => (
+					data.map((s: ISubject) => (
 						<div
 							key={s.id}
 							onClick={e => {

@@ -1,12 +1,30 @@
-import React, { Dispatch, SetStateAction } from 'react'
+'use client'
+
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import arrow from '/assets/arrow.png'
 import Image from 'next/image'
+import { AxiosError } from 'axios'
+import axiosInstance from '@/utils/axiosInstance'
 
 type Props = {
 	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const Subject = (props: Props) => {
+	const [subject, setSubject] = useState<any>(null)
+	const [topics, setTopics] = useState<any>(null)
+	const [error, setError] = useState<AxiosError | null>(null)
+	useEffect(() => {
+		axiosInstance
+			.get('/user/getTopics/1')
+			.then(res => {
+				setTopics(res.data.message)
+				console.log(res.data.message)
+			})
+			.catch((err: AxiosError) => {
+				setError(err)
+			})
+	}, [])
 	return (
 		<div className='mb-[25px] w-[319px]'>
 			{/* title bar */}
@@ -27,25 +45,16 @@ const Subject = (props: Props) => {
 					</div>
 					<div className='text-[22px]'>Математика</div>
 				</div>
-				{/* teacher info */}
-				<div className='mt-[13px] flex justify-start w-full flex-col'>
-					<div>Преподаватель: Иванов И.И.</div>
-					<div>Кабинет: Иванов И.И.</div>
-				</div>
 				{/* themes */}
 				<div className='flex justity-start w-full flex-col mt-[10px]'>
-					<div>
-						<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
-							Тема 1
-						</p>
-						<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
-					</div>
-					<div>
-						<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
-							Тема 2
-						</p>
-						<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
-					</div>
+					{topics.map((t: any) => (
+						<div>
+							<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
+								{t.title}
+							</p>
+							<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
