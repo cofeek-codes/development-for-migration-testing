@@ -5,6 +5,7 @@ import arrow from '/assets/arrow.png'
 import Image from 'next/image'
 import { AxiosError } from 'axios'
 import axiosInstance from '@/utils/axiosInstance'
+import Link from 'next/link'
 
 type Props = {
 	setIsSubjectOpen: Dispatch<SetStateAction<boolean>>
@@ -66,12 +67,14 @@ const Subject = (props: Props) => {
 					{!topics && 'Загрузка...'}
 					{topics &&
 						topics.map((t: any) => (
-							<div key={t.id}>
-								<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
-									{t.title}
-								</p>
-								<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
-							</div>
+							<Link href={`/topic/${t.id}`}>
+								<div key={t.id}>
+									<p className='text-[22px] py-[10px] px-[15px] cursor-pointer mb-[5px] rounded-[10px] transition-[0.3s] hover:bg-lightPurple hover:transition-[0.3s]'>
+										{t.title}
+									</p>
+									<hr className='border-t-2 border-solid border-t-white mb-[5px]' />
+								</div>
+							</Link>
 						))}
 				</div>
 			</div>

@@ -2,7 +2,12 @@ import React from 'react'
 import Question from './Question'
 import { useTimer } from 'react-timer-hook'
 
-const Test = () => {
+type Props = {
+	testId: number
+	isTest: boolean
+	title: string
+}
+const Test = (props: Props) => {
 	const expiryTimestamp = new Date()
 	expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 600)
 	const {

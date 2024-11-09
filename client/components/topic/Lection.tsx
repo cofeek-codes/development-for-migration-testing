@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Lection = () => {
+type Props = {
+	lectionId: number
+	isTest: boolean
+	title: string
+}
+
+const Lection = (props: Props) => {
 	return (
 		<div>
 			{/* title */}
