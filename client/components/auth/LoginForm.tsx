@@ -1,11 +1,11 @@
 'use client'
 
-import AxiosInstance from '@/utils/axiosInstance'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import { Bounce, toast, ToastContainer } from 'react-toastify'
+import axiosInstance from '@/utils/axiosInstance'
 
 type FormData = {
 	login: string
@@ -21,10 +21,11 @@ const LoginForm = () => {
 
 	function submitLoginForm(e: any) {
 		e.preventDefault()
-		AxiosInstance.post('/auth/login', {
-			login: formData.login,
-			password: formData.password,
-		})
+		axiosInstance
+			.post('/auth/login', {
+				login: formData.login,
+				password: formData.password,
+			})
 			.then(res => {
 				if (res.data.code != 200) {
 					setError(res)

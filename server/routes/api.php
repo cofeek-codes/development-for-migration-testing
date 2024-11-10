@@ -47,3 +47,27 @@ Route::controller(TopicController::class)->prefix('/topic')->group(function () {
     Route::post('/sendTest/', 'sendTest');
     Route::get('/getMark/{test_id}', 'getMark');
 });
+
+Route::controller(AdminController::class)->prefix('/admin')->group(function () {
+    Route::get('/getUsers', 'getUsers');
+    Route::get('/getUser/{id_user}', 'getUser');
+    Route::get('/getGroups', 'getGroups');
+    Route::get('/getGroup/{id_group}', 'getGroup');
+    Route::get('/getSubjects', 'getSubjects');
+    Route::get('/getSubject/{id_subject}', 'getSubject');
+    Route::put('/updateUser', 'updateUser');
+    Route::put('/updateGroup', 'updateGroup');
+    Route::put('/updateSubject', 'updateSubject');
+    Route::post('/addUser', 'addUser');
+    Route::post('/addGroup', 'addGroup');
+    Route::post('/addSubject', 'addSubject');
+    Route::delete('/deleteUser', 'deleteUser');
+    Route::delete('/deleteGroup', 'deleteGroup');
+    Route::delete('/deleteSubject', 'deleteSubject');
+
+    Route::get('/getNews', 'getNews');
+    Route::get('/getNews/{id_news}', 'getNewsId');
+    Route::post('/addNews', 'addNews');
+    Route::put('/updateNews', 'updateNews');
+    Route::delete('/deleteNews', 'deleteNews');
+});
