@@ -60,6 +60,8 @@ const Projects = () => {
 			<CreateProjectModal
 				isModalOpen={isModalCreateOpen}
 				setModalOpen={setModalCreateOpen}
+				setUpdate={setUpdate}
+				update={update}
 			/>
 		</>
 	)
