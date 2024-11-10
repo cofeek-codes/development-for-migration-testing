@@ -61,7 +61,16 @@ const Test = (props: Props) => {
 			.post('/topic/sendTest', body)
 			.then(res => {
 				console.log(res.data.message)
-				window.location.reload()
+				// window.location.reload()
+				axiosInstance
+					.get(`/topic/getMark/${props.test.id}`)
+					.then(res => {
+						setMark(res.data.message)
+						console.log(res.data.message)
+					})
+					.catch(err => {
+						setError(err)
+					})
 			})
 			.catch(err => {
 				setError(err)
