@@ -1,11 +1,28 @@
 'use client'
 
-import { useState } from 'react'
-import CreateModal from '../modal/projectsmodal/CreateModal'
+import axiosInstance from '@/utils/axiosInstance'
+import { AxiosError } from 'axios'
+import { useEffect, useState } from 'react'
+import CreateProjectModal from '../modal/CreateProjectModal'
 import Project from './Project'
 
 const Projects = () => {
 	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
+	const [data, setData] = useState<any>(null)
+	const [error, setError] = useState<AxiosError | null>(null)
+	const [resetIndicator, setResetIndicator] = useState<boolean>(false)
+	useEffect(() => {
+		axiosInstance
+			.get('/project/getAll')
+			.then(res => {
+				console.log(res.data)
+				setData(res.data)
+			})
+			.catch(err => {
+				console.log(err)
+				setError(err)
+			})
+	}, [isModalCreateOpen, resetIndicator])
 	return (
 		<>
 			<div className='mb-[25px] w-full'>
@@ -22,14 +39,22 @@ const Projects = () => {
 					</div>
 				</div>
 				<div>
-					<Project
-						title='Математика'
-						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nostrum ex fugiat quis dolorem, aliquid distinctio reprehenderit vero doloremque et.'
-						url='http://localhost/#'
-					/>
+					{!data && 'Загрузка...'}
+					{data &&
+						data.map((p: any) => (
+							<Project
+								key={p.id}
+								id={p.id}
+								title={p.title}
+								description={p.description}
+								url={p.url}
+								resetIndicator={resetIndicator}
+								setResetIndicator={setResetIndicator}
+							/>
+						))}
 				</div>
 			</div>
-			<CreateModal
+			<CreateProjectModal
 				isModalOpen={isModalCreateOpen}
 				setModalOpen={setModalCreateOpen}
 			/>

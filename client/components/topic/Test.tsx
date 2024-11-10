@@ -11,6 +11,7 @@ import StudentsAnswers from './StudentsAnswer'
 interface IProps {
 	test: ITest
 	isTest: boolean
+	getMaterials: () => void
 }
 
 const Test = (props: IProps) => {
@@ -35,6 +36,7 @@ const Test = (props: IProps) => {
 
 	const deleteTest = () => {
 		axiosInstance.delete(`/topic/deleteTest/${props.test.id}`)
+		props.getMaterials()
 	}
 	return (
 		<>

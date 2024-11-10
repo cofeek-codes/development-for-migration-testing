@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     function getGroups(Request $request) {
-        $subjects = Subject::where('user_id', $request->header('user_id'))->groupBy('groupId')->get(['group_id']);
+        $subjects = Subject::where('user_id', $request->header('user_id'))->groupBy('group_id')->get(['group_id']);
         $groups = [];
         foreach ($subjects as $subject) {
             array_push($groups, Group::where('id', $subject->group_id)->get());

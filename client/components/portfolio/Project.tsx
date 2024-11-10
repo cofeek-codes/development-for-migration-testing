@@ -1,14 +1,18 @@
 import Link from 'next/link'
-import ContextMenu from '../contextMenu/ContextMenu'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import ContextMenu from '../ContextMenu'
 
 interface IProject {
+	id: number
 	title: string
 	description: string
 	url: string
 }
-
-const Project = (props: IProject) => {
+type AddProps = {
+	resetIndicator: boolean
+	setResetIndicator: Dispatch<SetStateAction<boolean>>
+}
+const Project = (props: IProject & AddProps) => {
 	const [clicked, setIsClicked] = useState<boolean>(false)
 	const [points, setPoints] = useState({
 		x: 0,
@@ -34,7 +38,14 @@ const Project = (props: IProject) => {
 				})
 			}}
 		>
-			{clicked && <ContextMenu points={points} />}
+			{clicked && (
+				<ContextMenu
+					resetIndicator={props.resetIndicator}
+					setResetIndicator={props.setResetIndicator}
+					projectId={props.id}
+					points={points}
+				/>
+			)}
 			<div className='max-w-[835px]'>
 				<h2 className='text-[23px] mb-[10px]'>{props.title}</h2>
 				<p className='text-[15px]'>{props.description}</p>

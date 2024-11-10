@@ -34,7 +34,7 @@ Route::controller(ProjectController::class)->prefix('/project')->group(function 
 	Route::get('/getOne/{id_project}', 'getOne');
 	Route::post('/addProject', 'addProject');
 	Route::put('/updateProject/{id_project}', 'updateProject');
-	Route::delete('/deleteProject', 'deleteProject');
+	Route::delete('/deleteProject/{id_project}', 'deleteProject');
 });
 Route::controller(TopicController::class)->prefix('/topic')->group(function () {
 	Route::get('/getMaterials/{topic_id}', 'getMaterials');

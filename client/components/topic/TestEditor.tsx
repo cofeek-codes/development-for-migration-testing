@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 interface IProps {
 	topic_id: number
 	setTestCreateOpen: Dispatch<SetStateAction<boolean>>
+	getMaterials: () => void
 }
 
 interface IQuestion {
@@ -43,6 +44,7 @@ const TestEditor = (props: IProps) => {
 			topic_id: props.topic_id,
 			questions,
 		})
+		props.getMaterials()
 		props.setTestCreateOpen(false)
 	}
 	return (

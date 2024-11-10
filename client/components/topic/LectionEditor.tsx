@@ -9,6 +9,7 @@ interface IProps {
 	topic_id?: number
 	setLectionCreateOpen: Dispatch<SetStateAction<boolean>>
 	setLectionUpdateOpen: Dispatch<SetStateAction<boolean>>
+	getMaterials: () => void
 }
 
 const LectionEditor = (props: IProps) => {
@@ -27,8 +28,8 @@ const LectionEditor = (props: IProps) => {
 				title: title,
 				content: content,
 			})
+			props.getMaterials()
 			props.setLectionUpdateOpen(false)
-			props.update
 		}
 	}
 
@@ -39,6 +40,7 @@ const LectionEditor = (props: IProps) => {
 				content: content,
 				topic_id: props.topic_id,
 			})
+			props.getMaterials()
 			props.setLectionCreateOpen(false)
 		}
 	}

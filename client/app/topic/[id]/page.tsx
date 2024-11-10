@@ -28,12 +28,14 @@ const Topic = () => {
 	const params = useParams()
 
 	const getMaterials = () => {
+		console.log('get')
+
 		axiosInstance
 			.get(`/topic/getMaterials/${params.id}`)
 			.then(res => {
 				setTopic(res.data.message)
-				console.log(res.data.message)
 				setTabs([])
+				console.log(res.data.message)
 				res.data.message.lectures.forEach((lecture: ILecture) => {
 					setTabs(tabs => [
 						...tabs,
@@ -42,12 +44,26 @@ const Topic = () => {
 							SetLectionUpdateOpen={setLectionUpdateOpen}
 							setLectionUpdate={setLectionUpdate}
 							isTest={false}
+							getMaterials={getMaterials}
 						/>,
 					])
 				})
 				res.data.message.tests.forEach((test: ITest) => {
-					setTabs(tabs => [...tabs, <Test test={test} isTest={true} />])
+					setTabs(tabs => [
+						...tabs,
+						<Test getMaterials={getMaterials} test={test} isTest={true} />,
+					])
 				})
+			})
+			.catch((err: AxiosError) => {
+				setError(err)
+			})
+		// getTopic
+		axiosInstance
+			.get(`/topic/getTopic/${params.id}`)
+			.then(res => {
+				setTopic(res.data.message)
+				console.log(res.data.message)
 			})
 			.catch((err: AxiosError) => {
 				setError(err)
@@ -100,7 +116,7 @@ const Topic = () => {
 								{tabs.map((tab: React.JSX.Element, index: number) => (
 									<div
 										key={index}
-										className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'
+										className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s] cursor-pointer'
 										onClick={e => {
 											e.preventDefault()
 											console.log(tabs)
@@ -158,6 +174,7 @@ const Topic = () => {
 								update={true}
 								lecture={lectionUpdate!}
 								topic_id={+params.id}
+								getMaterials={getMaterials}
 							/>
 						) : isLectionCreateOpen ? (
 							<LectionEditor
@@ -165,11 +182,13 @@ const Topic = () => {
 								setLectionCreateOpen={setLectionCreateOpen}
 								update={false}
 								topic_id={+params.id}
+								getMaterials={getMaterials}
 							/>
 						) : isTestCreateOpen ? (
 							<TestEditor
 								topic_id={+params.id}
 								setTestCreateOpen={setTestCreateOpen}
+								getMaterials={getMaterials}
 							/>
 						) : (
 							tabs[selectedTab]

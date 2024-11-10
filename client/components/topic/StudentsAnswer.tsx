@@ -2,6 +2,7 @@
 import axiosInstance from '@/utils/axiosInstance'
 import { AxiosError } from 'axios'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import Accordion from './Accordion'
 
 interface IAnswersData {
 	mark: {
@@ -31,6 +32,7 @@ const StudentsAnswers = (props: IProps) => {
 	const [testTitle, setTestTitle] = useState<string>('')
 	const [answersData, setAnswersData] = useState<IAnswersData[] | null>(null)
 	const [error, setError] = useState<AxiosError | null>(null)
+	const [update, setUpdate] = useState<boolean>(false)
 	useEffect(() => {
 		// getTest
 		axiosInstance
@@ -50,7 +52,7 @@ const StudentsAnswers = (props: IProps) => {
 			.catch(err => {
 				setError(err)
 			})
-	}, [])
+	}, [update])
 
 	return (
 		<div className='flex flex-col justify-between h-full'>
@@ -62,25 +64,18 @@ const StudentsAnswers = (props: IProps) => {
 					{!answersData
 						? 'Загрузка...'
 						: answersData.map((el: IAnswersData) => (
-								<div
-									key={el.user.id}
-									className='resize-none flex justify-center items-center px-[15px] bg-lightPurple w-full p-[] h-[55px] outline-none overflow-y-auto rounded-[12px]'
-								>
-									<div className='w-full bg-lightPurple'>
-										<div className='flex justify-between items-center'>
-											<div className='text-[18px]'>
-												{el.user.surname} {el.user.name[0]}.{' '}
-												{el.user.patronymic[0]}.
-											</div>
-											<div className='text-[15px]'>
-												Продолжительность: <b>{el.mark.time}</b>
-											</div>
-											<div className='text-[15px]'>
-												Оценка: <b>{el.mark.mark}</b>
-											</div>
-										</div>
-									</div>
-								</div>
+								<Accordion
+									key={el.mark.id}
+									student={`${el.user.surname} ${el.user.name[0]}. ${el.user.patronymic[0]}.`}
+									time={el.mark.time}
+									mark={el.mark.mark}
+									test_id={props.test_id}
+									user_id={el.user.id}
+									mark_id={el.mark.id}
+									date={el.mark.date}
+									update={update}
+									setUpdate={setUpdate}
+								/>
 						  ))}
 				</div>
 			</div>

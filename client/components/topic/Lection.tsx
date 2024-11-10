@@ -8,11 +8,13 @@ interface IProps {
 	isTest: boolean
 	SetLectionUpdateOpen: Dispatch<SetStateAction<boolean>>
 	setLectionUpdate: any
+	getMaterials: () => void
 }
 
 const Lection = (props: IProps) => {
 	const deleteLecture = () => {
 		axiosInstance.delete(`/topic/deleteLecture/${props.lecture.id}`)
+		props.getMaterials()
 	}
 	return (
 		<div className='flex flex-col justify-between h-full'>
