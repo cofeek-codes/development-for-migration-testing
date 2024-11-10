@@ -1,15 +1,17 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState } from 'react'
-import Modal from './Modal'
 import axiosInstance from '@/utils/axiosInstance'
 import { AxiosError } from 'axios'
-import { Bounce, toast } from 'react-toastify'
-import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
+import { Bounce, toast } from 'react-toastify'
+import Modal from './Modal'
 interface ICreateModal {
 	isModalOpen: boolean
 	setModalOpen: Dispatch<SetStateAction<boolean>>
+	update: boolean
+	setUpdate: Dispatch<SetStateAction<boolean>>
 }
 
 type FormData = {
@@ -32,6 +34,7 @@ const CreateProjectModal = (props: ICreateModal) => {
 				user_id: Cookies.get('user_id'),
 			})
 			.then(res => {
+				props.setUpdate(!props.update)
 				if (res.data.code != 200) {
 					setError(res)
 					toast.error(res.data.message, {
@@ -95,8 +98,15 @@ const CreateProjectModal = (props: ICreateModal) => {
 							Ссылка на проект
 						</label>
 						<input
-							onInput={(e: any) => {
-								setFormData({ ...formData, url: e.target.value })
+							onInput={(e: FormEvent<HTMLInputElement>) => {
+								if (!e.currentTarget.value.includes('http')) {
+									setFormData({
+										...formData,
+										url: 'https://' + e.currentTarget.value,
+									})
+								} else {
+									setFormData({ ...formData, url: e.currentTarget.value })
+								}
 							}}
 							type='text'
 							id='description__input'

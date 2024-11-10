@@ -1,18 +1,21 @@
-import Link from 'next/link'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import ContextMenu from '../ContextMenu'
+import UpdateProjectModal from '../modal/UpdateProjectModal'
 
 interface IProject {
 	id: number
 	title: string
 	description: string
 	url: string
+	update: boolean
+	setUpdate: Dispatch<SetStateAction<boolean>>
 }
 type AddProps = {
 	resetIndicator: boolean
 	setResetIndicator: Dispatch<SetStateAction<boolean>>
 }
 const Project = (props: IProject & AddProps) => {
+	const [isUpdateModalOpen, setIsUpdateModalOpen] = useState<boolean>(false)
 	const [clicked, setIsClicked] = useState<boolean>(false)
 	const [points, setPoints] = useState({
 		x: 0,
@@ -44,6 +47,7 @@ const Project = (props: IProject & AddProps) => {
 					setResetIndicator={props.setResetIndicator}
 					projectId={props.id}
 					points={points}
+					setModalOpen={setIsUpdateModalOpen}
 				/>
 			)}
 			<div className='max-w-[835px]'>
@@ -51,13 +55,21 @@ const Project = (props: IProject & AddProps) => {
 				<p className='text-[15px]'>{props.description}</p>
 			</div>
 			<div className='flex items-end'>
-				<Link
+				<a
 					className='bg-lightPurple hover:bg-buttonsHover hover:transition-[0.3s] transition-[0.3s] rounded-[22px] py-[10px] px-[35px]'
 					href={props.url}
+					target='_blank'
 				>
 					<span className='text-[15px] font-regular'>Перейти</span>
-				</Link>
+				</a>
 			</div>
+			<UpdateProjectModal
+				isModalOpen={isUpdateModalOpen}
+				setModalOpen={setIsUpdateModalOpen}
+				projectId={props.id}
+				update={props.update}
+				setUpdate={props.setUpdate}
+			/>
 		</div>
 	)
 }

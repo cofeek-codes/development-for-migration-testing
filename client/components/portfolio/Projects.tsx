@@ -9,6 +9,7 @@ import axiosInstance from '@/utils/axiosInstance'
 const Projects = () => {
 	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
 	const [data, setData] = useState<any>(null)
+	const [update, setUpdate] = useState<boolean>(false)
 	const [error, setError] = useState<AxiosError | null>(null)
 	const [resetIndicator, setResetIndicator] = useState<boolean>(false)
 	useEffect(() => {
@@ -22,7 +23,7 @@ const Projects = () => {
 				console.log(err)
 				setError(err)
 			})
-	}, [isModalCreateOpen, resetIndicator])
+	}, [isModalCreateOpen, resetIndicator, update])
 	return (
 		<>
 			<div className='mb-[25px] w-full'>
@@ -50,6 +51,8 @@ const Projects = () => {
 								url={p.url}
 								resetIndicator={resetIndicator}
 								setResetIndicator={setResetIndicator}
+								setUpdate={setUpdate}
+								update={update}
 							/>
 						))}
 				</div>

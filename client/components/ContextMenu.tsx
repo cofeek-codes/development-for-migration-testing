@@ -1,24 +1,17 @@
 'use client'
 
-import React, {
-	Dispatch,
-	SetStateAction,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
-import UpdateProjectModal from './modal/UpdateProjectModal'
 import axiosInstance from '@/utils/axiosInstance'
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 
 type Props = {
 	projectId: number
 	resetIndicator: boolean
 	setResetIndicator: Dispatch<SetStateAction<boolean>>
 	points: { x: number; y: number }
+	setModalOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const ContextMenu = (props: Props) => {
-	const [isUpdateModalOpen, setIsUpdateModalOpen] = useState<boolean>(false)
 	const menuRef = useRef<HTMLDivElement>(null)
 
 	function deleteProject(e: any) {
@@ -69,11 +62,9 @@ const ContextMenu = (props: Props) => {
 				<div
 					onClick={e => {
 						e.preventDefault()
-						console.log('change clicked')
-						setIsUpdateModalOpen(true)
-						console.log(isUpdateModalOpen)
+						props.setModalOpen(true)
 					}}
-					className='text-[20px] hover:bg-buttonsHover flex items-center h-full w-full border-b-2 border-b-[white] pl-[15px]'
+					className='text-[20px] hover:bg-buttonsHover flex items-center h-full w-full border-b-2 border-b-[white] pl-[15px] cursor-pointer'
 				>
 					Изменить
 				</div>
@@ -82,16 +73,11 @@ const ContextMenu = (props: Props) => {
 						e.preventDefault()
 						deleteProject(e)
 					}}
-					className='text-[20px] w-full pl-[15px] h-full hover:bg-buttonsHover flex items-center'
+					className='text-[20px] w-full pl-[15px] h-full hover:bg-buttonsHover flex items-center cursor-pointer'
 				>
 					Удалить
 				</div>
 			</div>
-
-			<UpdateProjectModal
-				isModalOpen={isUpdateModalOpen}
-				setModalOpen={setIsUpdateModalOpen}
-			/>
 		</>
 	)
 }
