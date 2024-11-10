@@ -8,8 +8,8 @@ import axiosInstance from '@/utils/axiosInstance'
 
 const Projects = () => {
 	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
-	const [data, setData] = useState<any>(null)
 	const [update, setUpdate] = useState<boolean>(false)
+	const [data, setData] = useState<any>(null)
 	const [error, setError] = useState<AxiosError | null>(null)
 	const [resetIndicator, setResetIndicator] = useState<boolean>(false)
 	useEffect(() => {
@@ -58,6 +58,8 @@ const Projects = () => {
 				</div>
 			</div>
 			<CreateProjectModal
+				update={update}
+				setUpdate={setUpdate}
 				isModalOpen={isModalCreateOpen}
 				setModalOpen={setModalCreateOpen}
 			/>

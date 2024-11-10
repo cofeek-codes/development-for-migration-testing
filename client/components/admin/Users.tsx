@@ -9,11 +9,14 @@ import User from './User'
 import axiosInstance from '@/utils/axiosInstance'
 import { IUser } from '@/types/models/IUser'
 import { IGroup } from '@/types/models/IGroup'
+import CreateUserModal from '../modal/CreateUserModal'
 
 const Users = () => {
 	const [data, setData] = useState<any>()
 	const [groups, setGroups] = useState<IGroup[]>([])
 	const [error, setError] = useState<any>()
+	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
+	const [update, setUpdate] = useState<boolean>(false)
 	useEffect(() => {
 		// getGroups
 		axiosInstance
@@ -131,9 +134,21 @@ const Users = () => {
 					))}
 			</div>
 
-			<div className='transition-[0.3s] hover:bg-buttonsHover absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple h-[45px] flex justify-center items-center rounded-[22px] text-[15px] px-[10px] py-[15px]'>
+			<div
+				onClick={e => {
+					e.preventDefault()
+					setModalCreateOpen(true)
+				}}
+				className='transition-[0.3s] hover:bg-buttonsHover absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple h-[45px] flex justify-center items-center rounded-[22px] text-[15px] px-[10px] py-[15px]'
+			>
 				Добавить пользователя
 			</div>
+			<CreateUserModal
+				isModalOpen={isModalCreateOpen}
+				setModalOpen={setModalCreateOpen}
+				update={update}
+				setUpdate={setUpdate}
+			/>
 		</div>
 	)
 }

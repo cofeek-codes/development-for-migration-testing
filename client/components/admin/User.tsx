@@ -21,9 +21,7 @@ const User = (props: Props) => {
 					{props.user.name} {props.user.surname} {props.user.patronymic}
 				</div>
 			</div>
-			<div>
-				<div>Студент: {props.group.name}</div>
-			</div>
+			<div>{/* <div>Студент: {props.group.name}</div> */}</div>
 			<div className='flex'>
 				<div className='bg-background rounded-[10px] px-[12px] mr-[10px] py-[8px] text-[15px]'>
 					Изменить
