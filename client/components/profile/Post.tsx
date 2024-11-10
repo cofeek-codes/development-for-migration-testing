@@ -3,17 +3,20 @@ import Link from 'next/link'
 import React from 'react'
 
 import arrowRight from '/assets/arrow-right.png'
+import { IPost } from '@/types/models/IPost'
 
-const Post = () => {
+type Props = {
+	post: IPost
+}
+
+const Post = (props: Props) => {
 	return (
 		<div className='w-full flex flex-col'>
 			{/* title */}
-			<div className='mb-[10px] text-[23px]'>Математика</div>
+			<div className='mb-[10px] text-[23px]'>{props.post.title}</div>
 			{/* content */}
 			<div className='flex flex-wrap max-w-[636px] h-full'>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy text ever
-				since the 1500s, when an unknown
+				{props.post.content}
 			</div>
 			<div className='mt-[10px] w-full flex justify-end'>
 				{/* <Link className='bg-lightPurple rounded-[22px] p-[10px]' href={'/'}> */}
