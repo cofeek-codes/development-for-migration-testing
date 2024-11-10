@@ -1,11 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Project from './Project'
 import CreateModal from '../modal/CreateModal'
+import { AxiosError } from 'axios'
+import axiosInstance from '@/utils/axiosInstance'
 
 const Projects = () => {
 	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
+	const [data, setData] = useState<any>(null)
+	const [error, setError] = useState<AxiosError | null>(null)
+	useEffect(() => {
+		axiosInstance
+			.get('/project/getAll')
+			.then(res => {
+				console.log(res.data)
+				setData(res.data)
+			})
+			.catch(err => {
+				console.log(err)
+				setError(err)
+			})
+	}, [])
 	return (
 		<>
 			<div className='mb-[25px] w-full'>
@@ -22,11 +38,15 @@ const Projects = () => {
 					</div>
 				</div>
 				<div>
-					<Project
-						title='Математика'
-						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nostrum ex fugiat quis dolorem, aliquid distinctio reprehenderit vero doloremque et.'
-						url='http://localhost/#'
-					/>
+					{data &&
+						data.map((p: any) => (
+							<Project
+								key={p.id}
+								title={p.title}
+								description={p.description}
+								url={p.url}
+							/>
+						))}
 				</div>
 			</div>
 			<CreateModal

@@ -58,7 +58,7 @@ const Student = () => {
 					{!data && 'Загрузка...'}
 					<div className='text-[30px] mb-[30px]'>{data?.groupName}</div>
 					<div className='flex transition-[0.3s] hover:bg-buttonsHover h-[75px] justify-center items-center bg-purple w-[228px] rounded-[22px]'>
-						<Link href={'/'} className='w-inherit text-[30px]'>
+						<Link href={'/portfolio'} className='w-inherit text-[30px]'>
 							Портфолио
 						</Link>
 					</div>

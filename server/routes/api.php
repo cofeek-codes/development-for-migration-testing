@@ -34,7 +34,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::get('/getNews/', 'getNews');
 });
 Route::controller(ProjectController::class)->prefix('/project')->group(function () {
-    Route::get('/getAll/{user_id}', 'getAll');
+    Route::get('/getAll/', 'getAll');
     Route::get('/getOne/{id}', 'getOne');
     Route::post('/addProject', 'addProject');
     Route::put('/updateProject/{id}', 'updateProject');
