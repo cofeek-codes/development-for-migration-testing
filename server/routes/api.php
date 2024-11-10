@@ -64,13 +64,13 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 	Route::post('/addUser', 'addUser');
 	Route::post('/addGroup', 'addGroup');
 	Route::post('/addSubject', 'addSubject');
-	Route::delete('/deleteUser', 'deleteUser');
-	Route::delete('/deleteGroup', 'deleteGroup');
-	Route::delete('/deleteSubject', 'deleteSubject');
+	Route::delete('/deleteUser/{id_user}', 'deleteUser');
+	Route::delete('/deleteGroup/{id_group}', 'deleteGroup');
+	Route::delete('/deleteSubject/{id_subject}', 'deleteSubject');
 
 	Route::get('/getNews', 'getNews');
 	Route::get('/getNews/{id_news}', 'getNewsId');
 	Route::post('/addNews', 'addNews');
 	Route::put ('/updateNews', 'updateNews');
-	Route::delete('/deleteNews', 'deleteNews');
+	Route::delete('/deleteNews/{news_id}', 'deleteNews');
 });
