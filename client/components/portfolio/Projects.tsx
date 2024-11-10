@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Project from './Project'
-import CreateModal from '../modal/CreateModal'
+import CreateProjectModal from '../modal/CreateProjectModal'
 import { AxiosError } from 'axios'
 import axiosInstance from '@/utils/axiosInstance'
 
@@ -10,6 +10,7 @@ const Projects = () => {
 	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
 	const [data, setData] = useState<any>(null)
 	const [error, setError] = useState<AxiosError | null>(null)
+	const [resetIndicator, setResetIndicator] = useState<boolean>(false)
 	useEffect(() => {
 		axiosInstance
 			.get('/project/getAll')
@@ -21,7 +22,7 @@ const Projects = () => {
 				console.log(err)
 				setError(err)
 			})
-	}, [isModalCreateOpen])
+	}, [isModalCreateOpen, resetIndicator])
 	return (
 		<>
 			<div className='mb-[25px] w-full'>
@@ -38,18 +39,22 @@ const Projects = () => {
 					</div>
 				</div>
 				<div>
+					{!data && 'Загрузка...'}
 					{data &&
 						data.map((p: any) => (
 							<Project
 								key={p.id}
+								id={p.id}
 								title={p.title}
 								description={p.description}
 								url={p.url}
+								resetIndicator={resetIndicator}
+								setResetIndicator={setResetIndicator}
 							/>
 						))}
 				</div>
 			</div>
-			<CreateModal
+			<CreateProjectModal
 				isModalOpen={isModalCreateOpen}
 				setModalOpen={setModalCreateOpen}
 			/>
