@@ -2,17 +2,21 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
+import exit from '/assets/exit.svg'
 import logo from '/assets/logo.png'
-import search from '/assets/search.png'
-import settings from '/assets/settings.png'
+
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 
 const Header = () => {
-	const searchRef = useRef<HTMLInputElement>(null)
-
-	const handleClick = () => {
-		searchRef.current!.focus()
+	const router = useRouter()
+	function handleLogout(e: any) {
+		e.preventDefault()
+		Cookies.remove('user_id')
+		Cookies.remove('role')
+		router.push('/auth')
 	}
+
 	return (
 		<header className='flex w-full justify-between bg-purple items-center left-0'>
 			<div className='header__logo my-[8px] ml-[25px]'>
@@ -21,25 +25,15 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className='flex items-center'>
-				<div className='header__search flex items-center mr-[25px]'>
-					<div className='relative'>
-						<Image
-							className='absolute left-[17px] top-[10%]'
-							onClick={handleClick}
-							src={search}
-							width={45}
-							height={45}
-							alt='search'
-						/>
-						<input
-							type='text'
-							ref={searchRef}
-							className='bg-background h-[56px] w-[343px] pl-[70px] pr-[20px] text-[25px] rounded-[30px] text-white'
-						/>
-					</div>
-				</div>
 				<div className='header__settings mr-[25px]'>
-					<Image src={settings} width={47} height={50} alt='settings' />
+					<Image
+						onClick={handleLogout}
+						src={exit}
+						width={47}
+						height={50}
+						alt='exit'
+						className='cursor-pointer transition-[0.3s] hover:brightness-75 hover:transition-[0.3s]'
+					/>
 				</div>
 			</div>
 		</header>

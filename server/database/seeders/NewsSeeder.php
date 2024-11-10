@@ -16,15 +16,15 @@ class NewsSeeder extends Seeder
         DB::table('news')->insert([
             [
             'title' => 'Новость 1',
-            'description' => 'Описание новости',
+            'content' => 'Описание новости',
             ],
             [
                 'title' => 'Новость 2',
-                'description' => 'Описание новости',
+                'content' => 'Описание новости',
             ],
             [
                 'title' => 'Новость 3',
-                'description' => 'Описание новости',
+                'content' => 'Описание новости',
             ],
     ]);
     }

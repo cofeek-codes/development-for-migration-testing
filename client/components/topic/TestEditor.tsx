@@ -1,9 +1,15 @@
 'use client'
 
 import cancel from '@/assets/cancel.svg'
+import axiosInstance from '@/utils/axiosInstance'
 import Image from 'next/image'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+
+interface IProps {
+	topic_id: number
+	setTestCreateOpen: Dispatch<SetStateAction<boolean>>
+}
 
 interface IQuestion {
 	id: string
@@ -15,7 +21,8 @@ interface IQuestion {
 	}[]
 }
 
-const TestEditor = () => {
+const TestEditor = (props: IProps) => {
+	const [title, setTitle] = useState('')
 	const [questions, setQuestions] = useState<IQuestion[]>([
 		{
 			id: uuidv4(),
@@ -29,13 +36,22 @@ const TestEditor = () => {
 			],
 		},
 	])
+
+	const addTest = () => {
+		axiosInstance.post(`/topic/addTest`, {
+			title: title,
+			topic_id: props.topic_id,
+			questions,
+		})
+		props.setTestCreateOpen(false)
+	}
 	return (
 		<div className='flex flex-col justify-between h-full'>
 			<div>
 				<input
 					className='font-bold text-[23px] mb-[15px] w-full bg-purple outline-none'
-					defaultValue={'Тест: Логарифмы'}
 					placeholder='Введите название теста'
+					onChange={e => setTitle(e.currentTarget.value)}
 				/>
 				<div className='flex flex-col h-[630px] w-full overflow-y-auto'>
 					{questions.map((question, index) => {
@@ -226,9 +242,15 @@ const TestEditor = () => {
 				</button>
 				<button
 					className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'
-					onClick={() => console.log(questions)}
+					onClick={() => addTest()}
 				>
 					Сохранить
+				</button>
+				<button
+					className='bg-lightPurple transition-[0.3s] hover:bg-buttonsHover hover:transition-[0.3s] w-[130px] h-[45px] flex justify-center items-center rounded-[22px] mr-[10px]'
+					onClick={() => props.setTestCreateOpen(false)}
+				>
+					Отменить
 				</button>
 			</div>
 		</div>

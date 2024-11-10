@@ -1,20 +1,15 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+interface IPost {
+	title: string
+	content: string
+}
 
-import arrowRight from '/assets/arrow-right.png'
-
-const Post = () => {
+const Post = (props: IPost) => {
 	return (
-		<div className='w-full flex flex-col'>
+		<div className='w-full flex flex-col mb-[10px]'>
 			{/* title */}
-			<div className='mb-[10px] text-[23px]'>Математика</div>
+			<div className='mb-[10px] text-[23px]'>{props.title}</div>
 			{/* content */}
-			<div className='flex flex-wrap max-w-[636px] h-full'>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy text ever
-				since the 1500s, when an unknown
-			</div>
+			<div className='flex flex-wrap max-w-[636px] h-full'>{props.content}</div>
 			<div className='mt-[10px] w-full flex justify-end'>
 				{/* <Link className='bg-lightPurple rounded-[22px] p-[10px]' href={'/'}> */}
 				{/* 	<span className='mr-[5px] font-regular'>Читать далее</span> */}

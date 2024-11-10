@@ -21,6 +21,10 @@ class TopicController extends Controller
         return ['code' => 200, 'message' => Lecture::find($lecture_id)];
     }
 
+    function getTopic($topic_id) {
+        return ['code' => 200, 'message' => Topic::find($topic_id)];
+    }
+
     function getTest($test_id) {
         $test = Test::find($test_id)->only(['id', 'title']);
         $questions = Question::where('test_id', $test_id)->get();
