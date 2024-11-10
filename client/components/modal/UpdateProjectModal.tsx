@@ -1,15 +1,18 @@
 'use client'
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import Modal from './Modal'
 import axiosInstance from '@/utils/axiosInstance'
 import { AxiosError } from 'axios'
-import { Bounce, toast } from 'react-toastify'
-import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Bounce, toast } from 'react-toastify'
+import Modal from './Modal'
 interface IUpdateProjectModal {
 	isModalOpen: boolean
 	setModalOpen: Dispatch<SetStateAction<boolean>>
+	projectId: number
+	update: boolean
+	setUpdate: Dispatch<SetStateAction<boolean>>
 }
 
 type FormData = {
@@ -20,18 +23,26 @@ type FormData = {
 
 const UpdateProjectModal = (props: IUpdateProjectModal) => {
 	const [formData, setFormData] = useState<FormData>({} as FormData)
+	const [projectData, setProjectData] = useState<any>()
 	const [error, setError] = useState<any>(null)
 	const router = useRouter()
+
+	useEffect(() => {
+		axiosInstance.get(`/project/getOne/${props.projectId}`).then(res => {
+			setProjectData(res.data)
+		})
+	}, [props.update])
 	function submitProject(e: any) {
 		e.preventDefault()
 		axiosInstance
-			.put('/project/updateProject', {
+			.put(`/project/updateProject/${props.projectId}`, {
 				title: formData.title,
 				description: formData.description,
 				url: formData.url,
 				user_id: Cookies.get('user_id'),
 			})
 			.then(res => {
+				props.setUpdate(!props.update)
 				if (res.data.code != 200) {
 					setError(res)
 					toast.error(res.data.message, {
@@ -45,15 +56,12 @@ const UpdateProjectModal = (props: IUpdateProjectModal) => {
 						theme: 'dark',
 						transition: Bounce,
 					})
-				} else {
-					console.log(res)
-					router.refresh()
 				}
-				// window.location.reload()
 			})
 			.catch((err: AxiosError) => {
 				console.log(err)
 			})
+
 		props.setModalOpen(false)
 	}
 	return (
@@ -68,6 +76,7 @@ const UpdateProjectModal = (props: IUpdateProjectModal) => {
 							Название проекта
 						</label>
 						<input
+							defaultValue={projectData && projectData.title}
 							onInput={(e: any) => {
 								setFormData({ ...formData, title: e.target.value })
 							}}
@@ -82,6 +91,7 @@ const UpdateProjectModal = (props: IUpdateProjectModal) => {
 							Описание проекта
 						</label>
 						<input
+							defaultValue={projectData && projectData.description}
 							onInput={(e: any) => {
 								setFormData({ ...formData, description: e.target.value })
 							}}
@@ -95,6 +105,7 @@ const UpdateProjectModal = (props: IUpdateProjectModal) => {
 							Ссылка на проект
 						</label>
 						<input
+							defaultValue={projectData && projectData.url}
 							onInput={(e: any) => {
 								setFormData({ ...formData, url: e.target.value })
 							}}
