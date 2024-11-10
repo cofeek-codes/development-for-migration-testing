@@ -18,7 +18,7 @@ type FormData = {
 	url: string
 }
 
-const CreateModal = (props: ICreateModal) => {
+const CreateProjectModal = (props: ICreateModal) => {
 	const [formData, setFormData] = useState<FormData>({} as FormData)
 	const [error, setError] = useState<any>(null)
 	const router = useRouter()
@@ -127,4 +127,4 @@ const CreateModal = (props: ICreateModal) => {
 	)
 }
 
-export default CreateModal
+export default CreateProjectModal
