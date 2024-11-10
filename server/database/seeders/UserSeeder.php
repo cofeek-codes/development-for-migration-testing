@@ -15,13 +15,33 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => fake()->name,
-            'surname' => fake()->name,
-            'patronymic' => fake()->name,
-            'login' => 'test',
-            'password' => Hash::make('test'),
+            [
+            'name' => 'Иван',
+            'surname' => 'Иванов',
+            'patronymic' => 'Иванович',
+            'login' => 'ivan',
+            'password' => Hash::make('ivan'),
+            'group_id' => null, 
+            'role_id' => 2,
+        ],
+        [
+            'name' => 'Алексей',
+            'surname' => 'Емельянов',
+            'patronymic' => 'Сергеевич',
+            'login' => 'alex',
+            'password' => Hash::make('alex'),
             'group_id' => 1, 
             'role_id' => 1,
-        ]);
+        ],
+        [
+            'name' => 'admin',
+            'surname' => 'admin',
+            'patronymic' => 'admin',
+            'login' => 'admin',
+            'password' => Hash::make('admin'),
+            'group_id' => null, 
+            'role_id' => 3,
+        ],
+    ]);
     }
 }

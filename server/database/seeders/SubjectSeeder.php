@@ -14,9 +14,21 @@ class SubjectSeeder extends Seeder
     public function run(): void
     {
         DB::table('subjects')->insert([
-            'name' => fake()->name,
+        [
+            'name' => 'Математика',
             'user_id' => 1,
             'group_id' => 1,
-        ]);
+        ],
+        [
+            'name' => 'Литература',
+            'user_id' => 1,
+            'group_id' => 1,
+        ],
+        [
+            'name' => 'Математика',
+            'user_id' => 1,
+            'group_id' => 2,
+        ],
+    ]);
     }
 }

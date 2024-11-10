@@ -14,8 +14,22 @@ class TopicSeeder extends Seeder
     public function run(): void
     {
         DB::table('topics')->insert([
-            'title' => fake()->name, 
+        [
+            'title' => 'Логарифмы', 
             'subject_id' => 1,
-        ]);
+        ],
+        [
+            'title' => 'Логарифмы 2', 
+            'subject_id' => 1,
+        ],
+        [
+            'title' => 'Глаголы', 
+            'subject_id' => 2,
+        ],
+        [
+            'title' => 'Логарифмы', 
+            'subject_id' => 3,
+        ],
+    ]);
     }
 }

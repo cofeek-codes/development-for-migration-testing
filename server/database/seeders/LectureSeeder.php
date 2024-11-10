@@ -14,9 +14,21 @@ class LectureSeeder extends Seeder
     public function run(): void
     {
         DB::table('lectures')->insert([
-            'title' => fake()->title,
-            'content' => fake()->title,
+        [
+            'title' => 'Логарифмы',
+            'content' => 'Логарифмы',
             'topic_id' => 1
-        ]);
+        ],
+        [
+            'title' => 'Логарифмы: использование',
+            'content' => 'Использование',
+            'topic_id' => 1
+        ],
+        [
+            'title' => 'Логарифмы 2',
+            'content' => '2',
+            'topic_id' => 2
+        ],
+    ]);
     }
 }

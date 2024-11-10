@@ -14,7 +14,15 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         DB::table('groups')->insert([
-            'name' => fake()->name,
-        ]);
+            [
+            'name' => 'ТМ-301',
+            ],
+            [
+            'name' => 'ИСиП-301',
+            ],
+            [
+            'name' => 'М-202',
+            ],
+    ]);
     }
 }
