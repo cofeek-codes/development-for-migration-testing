@@ -2,7 +2,9 @@
 
 import { IGroup } from '@/types/models/IGroup'
 import { IUser } from '@/types/models/IUser'
-import React, { useEffect } from 'react'
+import axiosInstance from '@/utils/axiosInstance'
+import React, { useEffect, useState } from 'react'
+import UpdateUserModal from '../modal/UpdateUserModal'
 
 type Props = {
 	user: IUser
@@ -10,6 +12,17 @@ type Props = {
 }
 
 const User = (props: Props) => {
+	const [isUpdateModalOpen, setIsUpdateModalOpen] = useState<boolean>(false)
+	const [update, setUpdate] = useState<boolean>(false)
+	function deleteUser(e: any) {
+		axiosInstance
+			.delete(`/admin/deleteUser/${props.user.id}`)
+			.then(res => {
+				console.log(res.data)
+				window.location.reload()
+			})
+			.catch(console.log)
+	}
 	useEffect(() => {
 		console.log('props')
 		console.log(props)
@@ -23,13 +36,32 @@ const User = (props: Props) => {
 			</div>
 			<div>{/* <div>Студент: {props.group.name}</div> */}</div>
 			<div className='flex'>
-				<div className='bg-background rounded-[10px] px-[12px] mr-[10px] py-[8px] text-[15px]'>
+				<div
+					onClick={e => {
+						e.preventDefault()
+						setIsUpdateModalOpen(true)
+					}}
+					className='bg-background rounded-[10px] px-[12px] mr-[10px] py-[8px] text-[15px]'
+				>
 					Изменить
 				</div>
-				<div className='bg-background rounded-[10px] px-[12px] py-[8px] text-[15px]'>
+				<div
+					onClick={e => {
+						e.preventDefault()
+						deleteUser(e)
+					}}
+					className='bg-background rounded-[10px] px-[12px] py-[8px] text-[15px]'
+				>
 					Удалить
 				</div>
 			</div>
+			<UpdateUserModal
+				isModalOpen={isUpdateModalOpen}
+				setModalOpen={setIsUpdateModalOpen}
+				update={update}
+				setUpdate={setUpdate}
+				userId={props.user.id}
+			/>
 		</div>
 	)
 }

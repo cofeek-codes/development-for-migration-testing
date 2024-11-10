@@ -61,13 +61,13 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
     Route::post('/addUser', 'addUser');
     Route::post('/addGroup', 'addGroup');
     Route::post('/addSubject', 'addSubject');
-    Route::delete('/deleteUser', 'deleteUser');
-    Route::delete('/deleteGroup', 'deleteGroup');
-    Route::delete('/deleteSubject', 'deleteSubject');
+    Route::delete('/deleteUser/{user_id}', 'deleteUser');
+    Route::delete('/deleteGroup/{group_id}', 'deleteGroup');
+    Route::delete('/deleteSubject/{subject_id}', 'deleteSubject');
 
     Route::get('/getNews', 'getNews');
     Route::get('/getNews/{id_news}', 'getNewsId');
     Route::post('/addNews', 'addNews');
     Route::put('/updateNews', 'updateNews');
-    Route::delete('/deleteNews', 'deleteNews');
+    Route::delete('/deleteNews/{news_id}', 'deleteNews');
 });
