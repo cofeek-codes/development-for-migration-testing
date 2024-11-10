@@ -49,11 +49,12 @@ const CreateModal = (props: ICreateModal) => {
 					console.log(res)
 					router.refresh()
 				}
-				window.location.reload()
+				// window.location.reload()
 			})
 			.catch((err: AxiosError) => {
 				console.log(err)
 			})
+		props.setModalOpen(false)
 	}
 	return (
 		<Modal isOpen={props.isModalOpen}>

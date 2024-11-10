@@ -21,7 +21,7 @@ const Projects = () => {
 				console.log(err)
 				setError(err)
 			})
-	}, [])
+	}, [isModalCreateOpen])
 	return (
 		<>
 			<div className='mb-[25px] w-full'>
