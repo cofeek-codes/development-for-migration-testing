@@ -27,49 +27,43 @@ const Admin = () => {
 					{/* left */}
 					<div className='p-[25px] w-[250px] h-[600px] bg-purple rounded-[22px] mr-[25px]'>
 						<div className='*:mb-[2px] last:mb-0'>
-							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
-								<button
-									className='p-[10px] text-[15px]'
-									onClick={e => {
-										e.preventDefault()
-										setSelectedTab(0)
-									}}
-								>
-									Пользователи
-								</button>
+							<div
+								className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s] cursor-pointer'
+								onClick={e => {
+									e.preventDefault()
+									setSelectedTab(0)
+								}}
+							>
+								<button className='p-[10px] text-[15px]'>Пользователи</button>
 							</div>
-							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
-								<button
-									className='p-[10px] text-[15px]'
-									onClick={e => {
-										e.preventDefault()
-										setSelectedTab(1)
-									}}
-								>
-									Группы
-								</button>
+							<div
+								className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s] cursor-pointer'
+								onClick={e => {
+									e.preventDefault()
+									setSelectedTab(1)
+								}}
+							>
+								<button className='p-[10px] text-[15px]'>Группы</button>
 							</div>
-							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
-								<button
-									onClick={e => {
-										e.preventDefault()
-										setSelectedTab(2)
-									}}
-									className='p-[10px] text-[15px]'
-								>
+							<div
+								className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s] cursor-pointer'
+								onClick={e => {
+									e.preventDefault()
+									setSelectedTab(2)
+								}}
+							>
+								<button className='p-[10px] text-[15px]'>
 									Учебные предметы
 								</button>
 							</div>
-							<div className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s]'>
-								<button
-									onClick={e => {
-										e.preventDefault()
-										setSelectedTab(3)
-									}}
-									className='p-[10px] text-[15px]'
-								>
-									Новости
-								</button>
+							<div
+								className='hover:bg-buttonsHover rounded-[10px] transition-[0.3s] cursor-pointer'
+								onClick={e => {
+									e.preventDefault()
+									setSelectedTab(3)
+								}}
+							>
+								<button className='p-[10px] text-[15px]'>Новости</button>
 							</div>
 						</div>
 					</div>

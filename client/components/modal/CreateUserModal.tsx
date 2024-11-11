@@ -117,8 +117,10 @@ const CreateUserModal = (props: ICreateModal) => {
 			.catch((err: AxiosError) => {
 				console.log(err)
 			})
+			.finally(() => {
+				window.location.reload()
+			})
 		props.setModalOpen(false)
-		window.location.reload()
 	}
 	return (
 		<Modal isOpen={props.isModalOpen}>
