@@ -9,10 +9,9 @@ import Select, { StylesConfig } from 'react-select'
 import { Bounce, toast } from 'react-toastify'
 import Modal from './Modal'
 
-interface IUpdateProjectModal {
+interface ICreateModal {
 	isModalOpen: boolean
 	setModalOpen: Dispatch<SetStateAction<boolean>>
-	userId: number
 	update: boolean
 	setUpdate: Dispatch<SetStateAction<boolean>>
 }
@@ -27,9 +26,8 @@ type FormData = {
 	role_id: number
 }
 
-const UpdateUserModal = (props: IUpdateProjectModal) => {
+const CreateUserModal = (props: ICreateModal) => {
 	const [formData, setFormData] = useState<FormData>({} as FormData)
-	const [projectData, setProjectData] = useState<any>()
 	const [error, setError] = useState<any>(null)
 	const [groups, setGroups] = useState<any>(null)
 	const [groupOptions, setGroupOptions] = useState<any>(null)
@@ -37,7 +35,6 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 		{ value: 1, label: 'Студент' },
 		{ value: 2, label: 'Преподаватель' },
 	]
-	const router = useRouter()
 
 	const selectStyles: StylesConfig = {
 		control: styles => ({
@@ -72,24 +69,21 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 		}),
 	}
 
+	const router = useRouter()
 	useEffect(() => {
-		axiosInstance.get(`/admin/getUser/${props.userId}`).then(res => {
-			setProjectData(res.data.message)
-		})
-		axiosInstance.get(`/admin/getGroups`).then(res => {
+		axiosInstance.get('/admin/getGroups').then(res => {
+			console.log(res.data.message)
 			setGroups(res.data.message)
-
 			setGroupOptions(
 				res.data.message.map((g: IGroup) => ({ value: g.id, label: g.name }))
 			)
 		})
-	}, [props.update])
-	function updateUser(e: any) {
+	}, [])
+	function submitUser(e: any) {
 		e.preventDefault()
 		console.log(formData)
 		axiosInstance
-			.put(`/admin/updateUser/`, {
-				id: props.userId,
+			.post('/admin/addUser', {
 				name: formData.name,
 				surname: formData.surname,
 				patronymic: formData.patronymic,
@@ -231,7 +225,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 				<div className='self-end my-[25px] pb-[25px]'>
 					<button
 						onClick={e => {
-							updateUser(e)
+							submitUser(e)
 						}}
 						className='bg-lightPurple rounded-[22px] py-[14px] px-[35px] mr-[15px] hover:bg-buttonsHover hover:transition-[0.3s] transition-[0.3s]'
 					>
@@ -249,4 +243,4 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 	)
 }
 
-export default UpdateUserModal
+export default CreateUserModal
