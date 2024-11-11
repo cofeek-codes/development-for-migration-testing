@@ -1,6 +1,7 @@
 'use client'
 
 import { IGroup } from '@/types/models/IGroup'
+import { IUser } from '@/types/models/IUser'
 import axiosInstance from '@/utils/axiosInstance'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
@@ -15,6 +16,7 @@ interface IUpdateProjectModal {
 	userId: number
 	update: boolean
 	setUpdate: Dispatch<SetStateAction<boolean>>
+	user: IUser
 }
 
 type FormData = {
@@ -73,9 +75,6 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 	}
 
 	useEffect(() => {
-		axiosInstance.get(`/admin/getUser/${props.userId}`).then(res => {
-			setProjectData(res.data.message)
-		})
 		axiosInstance.get(`/admin/getGroups`).then(res => {
 			setGroups(res.data.message)
 
@@ -129,7 +128,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 			<div className='flex flex-col justify-between h-full'>
 				<div>
 					<h2 className='text-center text-[30px] mb-[15px]'>
-						Добавление пользователя
+						Изменение пользователя
 					</h2>
 					<form action='flex flex-col'>
 						<label className='text-[25px] ml-2.5' htmlFor='title__input'>
@@ -139,6 +138,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 							onInput={(e: any) => {
 								setFormData({ ...formData, name: e.target.value })
 							}}
+							defaultValue={props.user.name}
 							type='text'
 							id='title__input'
 							maxLength={120}
@@ -153,6 +153,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 							onInput={(e: any) => {
 								setFormData({ ...formData, surname: e.target.value })
 							}}
+							defaultValue={props.user.surname}
 							type='text'
 							id='descroption__input'
 							maxLength={500}
@@ -167,6 +168,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 							onInput={(e: any) => {
 								setFormData({ ...formData, patronymic: e.target.value })
 							}}
+							defaultValue={props.user.patronymic}
 							type='text'
 							id='descroption__input'
 							maxLength={500}
@@ -181,6 +183,7 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 							onInput={(e: any) => {
 								setFormData({ ...formData, login: e.target.value })
 							}}
+							defaultValue={props.user.login}
 							type='text'
 							id='descroption__input'
 							maxLength={500}
@@ -223,7 +226,6 @@ const UpdateUserModal = (props: IUpdateProjectModal) => {
 								setFormData({ ...formData, role_id: e.value })
 							}}
 							styles={selectStyles}
-							// defaultInputValue={roleOptions[0].label}
 							options={roleOptions}
 						/>
 					</form>

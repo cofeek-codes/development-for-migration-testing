@@ -1,15 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Select, { StylesConfig } from 'react-select'
 
-import search from '/assets/search.png'
-import User from './User'
-import axiosInstance from '@/utils/axiosInstance'
-import { IUser } from '@/types/models/IUser'
 import { IGroup } from '@/types/models/IGroup'
+import { IUser } from '@/types/models/IUser'
+import axiosInstance from '@/utils/axiosInstance'
 import CreateUserModal from '../modal/CreateUserModal'
+import User from './User'
+import search from '/assets/search.png'
 
 const Users = () => {
 	const [data, setData] = useState<any>()

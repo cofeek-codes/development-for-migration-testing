@@ -3,7 +3,7 @@
 import { IGroup } from '@/types/models/IGroup'
 import { IUser } from '@/types/models/IUser'
 import axiosInstance from '@/utils/axiosInstance'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import UpdateUserModal from '../modal/UpdateUserModal'
 
 type Props = {
@@ -34,14 +34,17 @@ const User = (props: Props) => {
 					{props.user.name} {props.user.surname} {props.user.patronymic}
 				</div>
 			</div>
-			<div>{/* <div>Студент: {props.group.name}</div> */}</div>
+			<div>
+				{/* <div>Студент: {props.group.id}</div> */}
+				{props.user.role_id == 1 ? 'Студент' : 'Преподаватель'}
+			</div>
 			<div className='flex'>
 				<div
 					onClick={e => {
 						e.preventDefault()
 						setIsUpdateModalOpen(true)
 					}}
-					className='bg-background rounded-[10px] px-[12px] mr-[10px] py-[8px] text-[15px]'
+					className='bg-background rounded-[10px] px-[12px] mr-[10px] py-[8px] text-[15px] hover:transition-[0.3s] hover:bg-buttonsHover transition-[0.3s] cursor-pointer'
 				>
 					Изменить
 				</div>
@@ -50,7 +53,7 @@ const User = (props: Props) => {
 						e.preventDefault()
 						deleteUser(e)
 					}}
-					className='bg-background rounded-[10px] px-[12px] py-[8px] text-[15px]'
+					className='bg-background rounded-[10px] px-[12px] py-[8px] text-[15px] hover:transition-[0.3s] hover:bg-buttonsHover transition-[0.3s] cursor-pointer'
 				>
 					Удалить
 				</div>
@@ -61,6 +64,7 @@ const User = (props: Props) => {
 				update={update}
 				setUpdate={setUpdate}
 				userId={props.user.id}
+				user={props.user}
 			/>
 		</div>
 	)
