@@ -1,51 +1,32 @@
 'use client'
 
-import Image from 'next/image'
-import React, { useRef } from 'react'
-import Select, { StylesConfig } from 'react-select'
+import { useEffect, useState } from 'react'
 
-import search from '/assets/search.png'
-import User from './User'
+import { IGroup } from '@/types/models/IGroup'
+import axiosInstance from '@/utils/axiosInstance'
+import CreateGroupModal from '../modal/CreateGroupModal'
 import Group from './Group'
 
 const Groups = () => {
-	const selectStyles: StylesConfig = {
-		control: styles => ({
-			...styles,
-			backgroundColor: '#0a0019',
-			border: 'none',
-			fontSize: '15px',
-		}),
+	const [data, setData] = useState<any>()
+	const [error, setError] = useState<any>()
+	const [isModalCreateOpen, setModalCreateOpen] = useState(false)
+	const [update, setUpdate] = useState<boolean>(false)
+	useEffect(() => {
+		// getGroups
+		axiosInstance
+			.get('/admin/getGroups')
+			.then(res => {
+				console.log(res.data.message[0])
+				setData(res.data.message)
+			})
+			.catch(err => {
+				console.log(err)
+				setError(err)
+			})
+	}, [])
 
-		container: styles => ({
-			...styles,
-			backgroundColor: '#0a0019',
-			border: 'none',
-		}),
-
-		option: styles => ({
-			...styles,
-			backgroundColor: '#0a0019',
-			border: 'none',
-		}),
-
-		menu: styles => ({
-			...styles,
-			backgroundColor: '#0a0019',
-			border: 'none',
-			fontSize: '15px',
-		}),
-
-		placeholder: styles => ({
-			...styles,
-			fontSize: '15px',
-		}),
-	}
-	const options = [
-		{ value: 'teacher', label: 'Преподаватель' },
-		{ value: 'student', label: 'Студент' },
-	]
-	const searchRef = useRef<HTMLInputElement>(null)
+	// const searchRef = useRef<HTMLInputElement>(null)
 	return (
 		<div>
 			{/* title div */}
@@ -54,7 +35,7 @@ const Groups = () => {
 					<div>Группы</div>
 				</div>
 				<div className='flex'>
-					<div className='flex items-center bg-background w-[180px] px-[7px] py-[3px] rounded-[10px]'>
+					{/* <div className='flex items-center bg-background w-[180px] px-[7px] py-[3px] rounded-[10px]'>
 						<div>
 							<Image
 								src={search}
@@ -74,19 +55,31 @@ const Groups = () => {
 								className='w-full bg-background text-[17px] font-regular focus:outline-none'
 							/>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 			{/* content */}
 			<div>
-				<Group />
-				<Group />
-				<Group />
+				{!data && 'Загрузка...'}
+				{data && data.map((g: IGroup) => <Group key={g.id} group={g} />)}
 			</div>
 
-			<div className='transition-[0.3s] hover:bg-buttonsHover absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple w-[130px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px]'>
+			<div
+				className='transition-[0.3s] hover:bg-buttonsHover absolute leading-[3px] right-[25px] bottom-[25px] bg-lightPurple w-[150px] h-[45px] flex justify-center items-center rounded-[22px] text-[15px] hover:transition-[0.3s] cursor-pointer'
+				onClick={e => {
+					e.preventDefault()
+					setModalCreateOpen(true)
+				}}
+			>
 				Добавить группу
 			</div>
+
+			<CreateGroupModal
+				isModalOpen={isModalCreateOpen}
+				setModalOpen={setModalCreateOpen}
+				update={update}
+				setUpdate={setUpdate}
+			/>
 		</div>
 	)
 }
