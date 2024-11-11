@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 const axiosInstance = axios.create({
 	// @TODO: fix getting server url from .env
 	// baseURL: process.env.SERVER_BASE_URL,
-	baseURL: 'http://127.0.0.1:8000/api',
+	baseURL: 'http://194.58.114.162:8081/api',
 })
 
 axiosInstance.interceptors.request.use(
